@@ -1,0 +1,34 @@
+.todo-list {
+  position: absolute;
+  top: 60px;
+  left: 40px;
+
+  width: max-content;
+  min-width: 250px;
+
+  &__container {
+    padding: $grid;
+  }
+
+  &__label {
+    display: block;
+    padding: 5px;
+    user-select: none;
+    cursor: pointer;
+  }
+
+  &__struck {
+    text-decoration: line-through;
+    padding-left: 5px;
+  }
+
+  &__not-struck {
+    padding-left: 5px;
+  }
+
+  &__encouragement {
+    margin: 5px 0;
+    font-style: italic;
+    text-align: center;
+  }
+}

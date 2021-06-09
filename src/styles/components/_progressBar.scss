@@ -1,0 +1,52 @@
+.progress-bar {
+  position: absolute;
+  bottom: $grid * 2;
+  right: $grid * 4;
+
+  &--experience {
+    width: 300px;
+    font-size: 18px;
+    font-weight: bold;
+    font-family: monospace;
+    padding: 1px 0;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid white;
+
+    &__value {
+      color: white;
+      //mix-blend-mode: overlay;
+      position: relative;
+      z-index: 1;
+    }
+
+    &__background {
+      position: absolute;
+      z-index: -1;
+      top: 0;
+      left: 0;
+      background: rgb(128, 196, 255);
+      height: 100%;
+      width: 50%;
+      
+      // Code adapted from the following pen
+      // https://codepen.io/dowding/pen/wJWpoY?editors=0100
+      background: repeating-linear-gradient(to right, cyan 0%, blue 50%, cyan 100%);
+      background-size: 300% auto;
+      background-position: 0 100%;
+      animation: ExperienceBarBackgroundMovement 3s infinite;
+      animation-fill-mode: forwards;
+      animation-timing-function: linear;
+    }
+  }
+
+}
+
+@keyframes ExperienceBarBackgroundMovement { 
+  0%   { 
+    background-position: 0 0; 
+  }
+  100% { 
+    background-position: -300% 0; 
+  }
+}

@@ -1,0 +1,29 @@
+.alert {
+  position: absolute;
+  z-index: 1000;
+  top: 50vh;
+  right: 50vw;
+  transform: translate(50%, -50%) !important;
+
+  &__background {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 999;
+    background-color: rgba(255, 255, 255, 0.6);
+  }
+
+  &__message {
+    margin: 0;
+    padding: $grid;
+  }
+
+  &__dismiss-button {
+    text-align: center;
+    display: block;
+    margin: 0 auto $grid;
+    font-family: $font-primary;
+    font-size: 16px;
+  }
+}

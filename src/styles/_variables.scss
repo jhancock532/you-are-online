@@ -1,0 +1,38 @@
+$grid: 10px;
+
+$font-primary: Consolas, Monospace, serif;
+
+$font-weights: ("regular": 400, "medium": 500, "bold": 700);
+ 
+$mobile-font-sizes: (
+  xxs: 8px,
+  xs: 10px,
+  s: 12px,
+  m: 14px,
+  l: 18px,
+  xl: 22px,
+  xxl: 28px,
+  xxxl: 32px
+);
+
+$tablet-font-sizes: (
+  xxs: 8px,
+  xs: 10px,
+  s: 12px,
+  m: 18px,
+  l: 18px,
+  xl: 24px,
+  xxl: 28px,
+  xxxl: 48px
+);
+
+$desktop-font-sizes: (
+  xxs: 10px,
+  xs: 12px,
+  s: 14px,
+  m: 18px,
+  l: 22px,
+  xl: 24px,
+  xxl: 32px,
+  xxxl: 48px
+);
