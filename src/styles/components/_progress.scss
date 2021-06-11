@@ -1,9 +1,27 @@
-.progress-bar {
+.progress {
   position: absolute;
   bottom: $grid * 2;
   right: $grid * 4;
 
-  &--experience {
+  &__level-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0 $grid * 2;
+  }
+
+  &__level {
+    user-select: none;
+    p {
+      margin: 0;
+    }
+    h1 {
+      margin: 0;
+      text-align: center;
+    }
+  }
+
+  &__experience {
     width: 300px;
     font-size: 18px;
     font-weight: bold;
@@ -11,16 +29,16 @@
     padding: 1px 0;
     text-align: center;
     background: rgba(0, 0, 0, 0.5);
-    border: 1px solid white;
+    //border: 1px solid white;
 
-    &__value {
+    &-value {
       color: white;
       //mix-blend-mode: overlay;
       position: relative;
       z-index: 1;
     }
 
-    &__background {
+    &-background {
       position: absolute;
       z-index: -1;
       top: 0;

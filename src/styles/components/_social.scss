@@ -1,0 +1,172 @@
+.social {
+  position: absolute;
+  bottom: 60px;
+  left: 40px;
+
+  &__prompt {
+    margin: 0;
+    padding: 2px;
+    font-style: italic;
+    text-align: center;
+  }
+
+  &__hint-text {
+    position: absolute;
+    pointer-events: none;
+    top: 37px; //jank because lazy
+    left: 5px;
+    line-height: 0;
+    margin: 0;
+    color: grey;
+  }
+
+  &__text-input {
+    resize: none;
+    background: white;
+    overflow-y: hidden;
+    font-family: $font-primary;
+    font-size: 16px;
+    width: 300px;
+  }
+
+  &__submit-button {
+    background: cornflowerblue;
+    user-select: none;
+    border-radius: 99em;
+    padding: $grid / 2 $grid;
+    width: max-content;
+    font-size: 18px;
+    display: block;
+    position: relative;
+    color: white;
+    margin: $grid auto;
+    cursor: pointer;
+    border-style: outset;
+
+    &:hover {
+      font-weight: bold;
+
+      &:active {
+        border-style: inset;
+      }
+
+      .social__submit-button__tooltip {
+        opacity: 1;
+        transition: opacity 1s ease 1s;
+      }
+    }
+
+    &__tooltip {
+      opacity: 0;
+      background-color: rgba(0, 0, 0, 0.8);
+      color: #fff;
+      text-align: center;
+      padding: $grid / 2;
+      border-radius: 6px;
+      font-weight: normal;
+      pointer-events: none;
+     
+      /* Adapted from https://www.w3schools.com/css/css_tooltip.asp, note the changes to width */
+      position: absolute;
+      z-index: 1;
+      width: max-content; //I prefer max-content to specific pixel values, mostly
+      top: -120%;
+      left: 50%;
+      transform: translateX(-50%); //so I transform instead of using a pixel value again
+      transition: opacity 1s ease 0s;
+    }
+  }
+
+  &__refresh {
+    padding: $grid;
+    text-align: center;
+    cursor: pointer;
+    text-decoration: underline;
+    user-select: none;
+
+    &__spinner {
+      margin-right: 5px;
+      margin-top: -6px;
+      font-size: 1.3em;
+      transform: translateY(5px) rotateZ(0deg);
+      animation-name: refeshSpin;
+      animation-duration: 2s;
+      animation-iteration-count: infinite;
+      animation-timing-function: linear;
+    }
+
+    &:hover {
+      background-color: #bbb;
+      font-weight: bold;
+    }
+  }
+
+  &__notifications {
+    display: flex;
+    justify-content: space-around;
+    padding: $grid 0 $grid / 2 0;
+    border-bottom: 1px solid grey;
+  }
+
+  &__notification {
+    position: relative;
+    cursor: pointer;
+
+    &__icon {
+      font-size: 2.5em;
+
+      &:hover {
+        color: cornflowerblue;
+      }
+    }
+
+    &__bubble {
+      position: absolute;
+      top: -4px;
+      right: -6px;
+      background: red;
+      color: white;
+      border-radius: 99em;
+      padding: 2px 4px;
+
+      &__lottery {
+        position: absolute;
+        top: 4px;
+        height: 1em;
+        overflow-y: hidden;
+        background: red;
+      }
+        
+      &__lottery-number {
+          margin: 0;
+          line-height: 1em;
+      }
+
+      &__lottery-spin {
+        animation-name: lotterySpin;
+        animation-duration: 3s;
+        animation-iteration-count: 1;
+        animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+      }
+    }
+  }
+
+}
+
+@keyframes refeshSpin {
+  0% {
+    transform: translateY(5px) rotateZ(0deg);
+  }
+  100% {
+    transform: translateY(5px) rotateZ(360deg);
+  }
+}
+
+@keyframes lotterySpin {
+  0% {
+    transform: translateY(-10em);
+  }
+  100% {
+    transform: translateY(0em);
+  }
+}

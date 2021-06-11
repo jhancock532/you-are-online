@@ -8,10 +8,12 @@ import { PerspectiveCamera, OrbitControls, Stats } from '@react-three/drei'
 import Model from './Charmodel'
 import FancyText from './FancyText'
 
-import XPBar from './components/XPBar'
+import Progress from './components/Progress'
 import TodoList from './components/TodoList'
 import JukeBox from './components/JukeBox'
+import Social from './components/Social'
 import Alert from './components/Alert'
+import TextParticleSystem from './components/TextParticleSystem'
 
 import './styles/main.scss';
 
@@ -24,21 +26,39 @@ const useStore = create((set) => ({
 }));
 */
 
+const LEVEL_PROGRESSION = [
+  "OFFLINE",
+  "DEFAULT",
+  "DARK_MODE",
+  "GLITCH"
+]
+
+const EXPERIENCE_PROGRESSION_BOUNDARIES = [
+  120,
+  240,
+  360
+]
+
 class App extends React.Component {
   constructor(props){
     super(props);
 
     this.state = {
+      experience: 0,
+      level: 1, //Level 0 is offline.
       alert: { 
         title: "Alert!",
         message: "Alert message!",
         dismissal: "Dismiss",
-        display: true,
+        display: false,
       }
     }
 
+    this.textParticleSystem = React.createRef();
+
     this.dismissAlert = this.dismissAlert.bind(this);
     this.displayNewAlert = this.displayNewAlert.bind(this);
+    this.addExperience = this.addExperience.bind(this);
   }
 
   dismissAlert(){
@@ -58,6 +78,13 @@ class App extends React.Component {
         display: true
       }
     })
+  }
+
+  addExperience(amount, effectSpawnPosition){
+    if (effectSpawnPosition === undefined) return;
+
+    this.setState(state => ({ experience: state.experience + amount }));
+    this.textParticleSystem.current.spawnExperience(amount, effectSpawnPosition);
   }
 
   render(){
@@ -80,10 +107,12 @@ class App extends React.Component {
           <Stats showPanel={0} className="stats" />
         </Canvas>
   
-        <TodoList callAlert={this.displayNewAlert}/>
-        <XPBar />
-        <JukeBox callAlert={this.displayNewAlert}/>
+        <TodoList callAlert={this.displayNewAlert} addExperience={this.addExperience}/>
+        <Social callAlert={this.displayNewAlert} addExperience={this.addExperience}/>
+        <Progress level={this.state.level} experience={this.state.experience}/>
+        <JukeBox callAlert={this.displayNewAlert} addExperience={this.addExperience}/>
         <Alert alert={this.state.alert} dismissAlert={this.dismissAlert}/>
+        <TextParticleSystem ref={this.textParticleSystem}/>
         
       </>
     )

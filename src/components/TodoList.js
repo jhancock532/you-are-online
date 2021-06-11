@@ -111,12 +111,22 @@ class TodoList extends React.Component {
     const newListItems = this.state.listItems;
     newListItems[listItemIndex].checked = !newListItems[listItemIndex].checked;
 
+    const boundingRectangle = event.currentTarget.getBoundingClientRect();
+    const effectSpawnPosition = {x: boundingRectangle.x - 60, y: boundingRectangle.y}
+
     this.setState({
       listItems: newListItems
     })
 
     if (this.checkIfAllItemsTicked()) {
+      this.props.addExperience(this.state.listItems.length, effectSpawnPosition);
       this.createNewListItems();
+    } else {
+      if (newListItems[listItemIndex].checked){
+        this.props.addExperience(1, effectSpawnPosition);
+      } else {
+        this.props.addExperience(-1, effectSpawnPosition);
+      }
     }
   
   }
@@ -124,8 +134,8 @@ class TodoList extends React.Component {
   attemptToClose() {
 
     this.props.callAlert({
-      title: "You're not done yet.",
-      message: "Tick the empty boxes, not the cross.",
+      title: "We're not done yet.",
+      message: "Tick the empty boxes, don't click the red cross!",
       dismissal: "Tick this!",
     });
 

@@ -15,6 +15,7 @@ const VIDEO_PLAYLIST = [
   { id: "Irp0uwdsM3Y", name: "Not Human", artist: "Elegant Slims" },
   { id: "rZgeF5SrCAg", name: "Zen", artist: "X Ambassadors, K.Flay, grandson" },
   { id: "cclQ3tlcqps", name: "Makeshift Kingdom", artist: "Sweatshop Union" },
+  { id: "OVwGnJ8Jd5w", name: "Fake", artist: "That Handsome Devil" },
 ];
 
 const PlaylistItem = props => (
@@ -112,7 +113,7 @@ class JukeBox extends React.Component {
     return (
       <Window windowClass="jukebox" windowTitle="Music Player" exitButton={true} windowClose={this.attemptToClose}>
         <div className="jukebox__container">
-          <YouTube videoId={this.state.videoPlayingId} opts={opts} onReady={this._onReady} />
+          <YouTube videoId={this.state.videoPlayingId} opts={opts} onEnd={this.playNextSong} />
           <Marquee gradient={false}>
             <p className="jukebox__song-marquee">
               Now Playing: <span className="jukebox__emphasis">
