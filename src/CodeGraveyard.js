@@ -55,3 +55,34 @@
     }
 
   }*/
+
+  /*
+
+  //Shader materials... Animating these transitions is going to be difficult.
+
+class CustomMaterial extends THREE.ShaderMaterial {
+  constructor() {
+    super({
+      uniforms: { color: { value: new THREE.Color("white") } },
+      vertexShader: `...`,
+      fragmentShader: `...`
+    })
+  }
+  get color() {
+    return this.uniforms.color.value
+  }
+}
+
+// Swapping out materials with conditionals, but this gets much more complicated.
+
+          { props.visualEffects.starWall ? 
+          <shaderMaterial
+            attach="material"
+            args={[StarFieldShader]}
+          /> : <meshStandardMaterial
+          attach="material"
+          color={nodes.Back_Wall.material.color}
+          roughness={nodes.Back_Wall.material.roughness}
+          metalness={nodes.Back_Wall.material.metalness}/> }
+
+*/

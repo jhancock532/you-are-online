@@ -1,51 +1,42 @@
-//import * as THREE from "three"
+import React from 'react';
+import Scene from './Scene';
 
-import React, { Suspense } from 'react'
-import { Canvas } from '@react-three/fiber' //useFrame
-import { PerspectiveCamera, OrbitControls, Stats } from '@react-three/drei'
-//import create from "zustand";
-
-import Model from './Charmodel'
-import FancyText from './FancyText'
-
-import Progress from './components/Progress'
-import TodoList from './components/TodoList'
-import JukeBox from './components/JukeBox'
-import Social from './components/Social'
-import Alert from './components/Alert'
-import TextParticleSystem from './components/TextParticleSystem'
+import Introduction from './components/Introduction';
+import Progress from './components/Progress';
+import TodoList from './components/TodoList';
+import JukeBox from './components/JukeBox';
+import Social from './components/Social';
+import Livestream from './components/Livestream';
+import Alert from './components/Alert';
+import TextParticleSystem from './components/TextParticleSystem';
 
 import './styles/main.scss';
 
-//import { EffectComposer, DepthOfField, Bloom, Noise, Vignette } from '@react-three/postprocessing'
-
 /*
-const useStore = create((set) => ({
-  count: 1,
-  inc: () => set((state) => ({ count: state.count + 1 }))
-}));
-*/
-
 const LEVEL_PROGRESSION = [
   "OFFLINE",
   "DEFAULT",
   "DARK_MODE",
   "GLITCH"
-]
+]*/
 
-const EXPERIENCE_PROGRESSION_BOUNDARIES = [
-  120,
-  240,
-  360
-]
+const EXPERIENCE_PROGRESSION_BOUNDARIES = [ 120, 240, 360 ];
+
 
 class App extends React.Component {
   constructor(props){
     super(props);
 
     this.state = {
+      //visual effect state variables
+      cameraPosition: 0,
+      starWall: false,
+      starSpeed: 0.5,
+      voidLevel: 1,
+
+      showIntroduction: true,
       experience: 0,
-      level: 1, //Level 0 is offline.
+      level: 2, //Level 0 is offline.
       alert: { 
         title: "Alert!",
         message: "Alert message!",
@@ -59,6 +50,25 @@ class App extends React.Component {
     this.dismissAlert = this.dismissAlert.bind(this);
     this.displayNewAlert = this.displayNewAlert.bind(this);
     this.addExperience = this.addExperience.bind(this);
+    this.toggleEffect = this.toggleEffect.bind(this);
+    this.hideIntroduction = this.hideIntroduction.bind(this);
+    this.setVisualEffect = this.setVisualEffect.bind(this);
+  }
+
+  toggleEffect(){
+    this.setState(state => ({
+      level: ((state.level + 1) % 3) + 1
+    }));
+  }
+
+  setVisualEffect(key, value){
+    this.setState({ [key]: value });
+  }
+
+  hideIntroduction(){
+    this.setState({
+      showIntroduction: false,
+    })
   }
 
   dismissAlert(){
@@ -88,32 +98,53 @@ class App extends React.Component {
   }
 
   render(){
+
+    const visualEffects = {
+      starWall: this.state.starWall,
+      cameraPosition: this.state.cameraPosition,
+      starSpeed: this.state.starSpeed,
+      voidLevel: this.state.voidLevel,
+    }
+
     return (
       <>
-        <Canvas>
-          <PerspectiveCamera position={[0, 5, 5]} />
-          <OrbitControls 
-            enablePan={true}
-            enableZoom={true}
-            enableRotate={true}
-          />
-          <Suspense fallback={null}>
-            <Model />
-          </Suspense>
-          <ambientLight intensity={0.5} />
-          <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} />
-          <pointLight position={[-10, -10, -10]} />
-          <FancyText text="Hello, world!"/>
-          <Stats showPanel={0} className="stats" />
-        </Canvas>
-  
-        <TodoList callAlert={this.displayNewAlert} addExperience={this.addExperience}/>
-        <Social callAlert={this.displayNewAlert} addExperience={this.addExperience}/>
-        <Progress level={this.state.level} experience={this.state.experience}/>
-        <JukeBox callAlert={this.displayNewAlert} addExperience={this.addExperience}/>
-        <Alert alert={this.state.alert} dismissAlert={this.dismissAlert}/>
-        <TextParticleSystem ref={this.textParticleSystem}/>
-        
+        <Scene level={this.state.level} visualEffects={visualEffects} />
+
+        { this.state.showIntroduction ? <Introduction hideIntroduction={this.hideIntroduction}/> : null}
+        <JukeBox 
+          level={this.state.level}
+          callAlert={this.displayNewAlert} 
+          addExperience={this.addExperience} 
+          setVisualEffect={this.setVisualEffect}
+        />
+        { this.state.level === 0 ? null : <>
+        <TodoList 
+          level={this.state.level}
+          callAlert={this.displayNewAlert} 
+          addExperience={this.addExperience}
+        /></>}
+        { this.state.level > 0 ? null : <>
+        <Social 
+          level={this.state.level} 
+          callAlert={this.displayNewAlert} 
+          addExperience={this.addExperience}
+        /></> }
+        { this.state.level > 5 ? null : <>
+        <Progress 
+          level={this.state.level} 
+          clickEffect={this.toggleEffect} 
+          experience={this.state.experience}
+        />
+        </>}
+
+        <Livestream 
+          level={this.state.level} 
+          callAlert={this.displayNewAlert} 
+          addExperience={this.addExperience}
+        />
+
+        <Alert alert={this.state.alert} level={this.state.level}  dismissAlert={this.dismissAlert}/>
+        <TextParticleSystem level={this.state.level} ref={this.textParticleSystem}/>
       </>
     )
   }
@@ -133,6 +164,14 @@ export default App;
         <Vignette eskil={false} offset={0.1} darkness={1.1} />
       </EffectComposer>
     </Canvas>
+
+    <FancyText text="Hello, world!"/>
+
+    <OrbitControls 
+      enablePan={true}
+      enableZoom={true}
+      enableRotate={true}
+    />
   )
 }
 */

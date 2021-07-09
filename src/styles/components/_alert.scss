@@ -11,7 +11,19 @@
     width: 100vw;
     height: 100vh;
     z-index: 999;
-    background-color: rgba(255, 255, 255, 0.6);
+
+    &--light {
+      background-color: rgba(255, 255, 255, 0.6);
+    }
+
+    &--dark {
+      background-color: rgba(33, 33, 33, 0.9);
+    }
+
+    &--glitch {
+      background-color: black;
+    }
+    
   }
 
   &__message {
@@ -25,5 +37,123 @@
     margin: 0 auto $grid;
     font-family: $font-primary;
     font-size: 16px;
+  }
+
+  &--light {
+
+    .alert {
+      &__message {
+        background: white;
+      }
+    }
+
+    .window {
+      &__title {
+        background: red;
+        color: white;
+        border: 1px solid black;
+        padding: 4px 4px 4px 8px;
+      }
+
+      &__content {
+        background: white;
+        padding-bottom: $grid / 2;
+        border: 1px solid black;
+        border-top: 0;
+      }
+    }
+
+  }
+
+  &--dark {
+
+    .alert {
+      &__message {
+        color: $darkmode-white;
+      }
+
+      &__dismiss-button {
+        background: $darkmode-black;
+        cursor: pointer;
+        padding: $grid / 2 $grid;
+        border: none;
+        color: $darkmode-white;
+        border-radius: 5px;
+
+        &:hover {
+          background: $darkmode-accent;
+        }
+
+      }
+    }
+
+    .window {
+      &__title {
+        background: $darkmode-accent;
+        color: white;
+        border-radius: 5px 5px 0 0;
+        padding: 4px 4px 4px 8px;
+      }
+
+      &__content {
+        background: $darkmode-grey;
+        padding-bottom: $grid * 0.4;
+        border-radius:  0 0 5px 5px;
+        
+      }
+
+      &__title-alert {
+        path {
+        fill: $darkmode-accent;
+        stroke: white;
+        }
+      }
+    }
+  }
+    
+  &--glitch {
+
+    .alert {
+      &__message {
+        color: $glitch-green;
+      }
+
+      &__dismiss-button {
+        background: $glitch-black;
+        cursor: pointer;
+        padding: $grid / 2 $grid;
+        border: $glitch-border;
+        color: $glitch-green;
+        border-radius: $glitch-border-radius;
+
+        &:hover {
+          background: $glitch-green;
+          color: $glitch-black;
+        }
+
+      }
+    }
+
+    .window {
+      &__title {
+        background: $glitch-green;
+        color: $glitch-black;
+        border-radius: 2px 2px 0 0;
+        padding: 4px 4px 4px 8px;
+      }
+
+      &__content {
+        background: $glitch-black;
+        border-top: $glitch-border;
+        padding-bottom: $grid * 0.4;
+        border-radius:  0 0 2px 2px;
+      }
+
+      &__title-alert {
+        path {
+        fill: $glitch-green;
+        }
+      }
+    }
   }
 }

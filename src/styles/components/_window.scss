@@ -8,6 +8,7 @@
   &__title {
     display: block;
     width: 100%;
+    min-width: 192px;
     padding: 2px 4px;
     font-family: $font-primary;
     font-weight: bold;
@@ -22,7 +23,13 @@
     background: red;
     color: white;
     cursor: pointer;
-    //border: 1px solid white;
+  }
+
+  &__minimise-toggle {
+    line-height: 1;
+    margin: 0;
+    padding: 2px 4px;
+    cursor: pointer;
   }
   
   &__content {
@@ -44,34 +51,17 @@
     }
   }
 
-  &--alert {
-
-    .window {
-      &__title {
-        color: white;
-        background-color: red;
-        border: 1px solid black;
-      }
-
-      &__content {
-        background: white;
-        border: 1px solid black;
-        border-top: 0;
-      }
-    }
-  }
-
-  &--normal {
+  &--light {
 
     .window {
       &__content {
-        background: rgba(220, 220, 220, 0.5);
+        background: rgba(230, 230, 230, 0.8);
         border: 1px solid white;
         border-top: 0;
       }
 
       &__title {
-        background: cornflowerblue;
+        background: $lightmode-accent;
         border: 1px solid white;
         cursor: grab;
 
@@ -84,6 +74,121 @@
         border: 1px solid white;
         border-left: 0;
         cursor: not-allowed;
+      }
+
+      &__minimise-toggle {
+        color: white;
+        background-color: darken($lightmode-accent, 20%);
+        border: 1px solid white;
+        border-left: 0;
+
+        &:hover {
+          background-color: darken($lightmode-accent, 30%);
+        }
+      }
+    }
+    
+  }
+
+  &--dark {
+
+    .window {
+      &__content {
+        background: rgba(20, 20, 20, 0.8);
+        border-radius: 0 0 5px 5px;
+      }
+
+      &__title {
+        background: $darkmode-grey;
+        color: $darkmode-white;
+        border-radius: 5px 0 0 0;
+        cursor: grab;
+        padding: 4px 8px;
+
+        &:active {
+          cursor: grabbing;
+        }
+      }
+
+      &__close {
+        background-color: #f52222;
+        border-radius: 0 5px 0 0;
+        line-height: 1.5;
+        margin: 0;
+        padding: 4px 6px 0;
+        border-left: 0;
+        cursor: not-allowed;
+
+        &:hover {
+          background-color: #a51717;
+        }
+      }
+
+      &__minimise-toggle {
+        line-height: 1.5;
+        padding: 4px 7px 0 6px;
+        color: white;
+        background-color: darken($darkmode-grey, 10%);
+
+        &:hover {
+          background-color: darken($darkmode-grey, 20%);
+        }
+      }
+    }
+    
+  }
+
+  &--glitch {
+
+    .window {
+      &__content {
+        background: rgba(2, 2, 2, 0.836);
+        border-radius: 0 0 2px 2px;
+      }
+
+      &__title {
+        background: $glitch-black;
+        color: $glitch-green;
+        border-radius: 3px 0 0 0;
+        cursor: grab;
+        padding: 4px 8px;
+        border-bottom: $glitch-border;
+
+        &:active {
+          cursor: grabbing;
+        }
+      }
+
+      &__close-icon {
+        color: $glitch-green;
+      }
+
+      &__close {
+        background-color: $glitch-black;
+        border: $glitch-border;
+        border-radius: 0 3px 0 0;
+        line-height: 1.2;
+        margin: 0;
+        padding: 4px 6px 0;
+        cursor: not-allowed;
+
+        &:hover {
+          background-color: lighten( $glitch-black, 20% );
+        }
+      }
+
+      &__minimise-toggle {
+        background-color: $glitch-black;
+        border: $glitch-border;
+        border-right: 0;
+        color: $glitch-green;
+        line-height: 1.2;
+        margin: 0;
+        padding: 4px 6px 0;
+
+        &:hover {
+          background-color: lighten( $glitch-black, 20% );
+        }
       }
     }
     

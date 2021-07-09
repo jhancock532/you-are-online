@@ -1,15 +1,38 @@
 .jukebox {
   position: absolute;
-  top: 60px;
-  right: 40px;
+  top: $grid * 2;
+  right: $grid * 2;
 
   &__container {
     width: 300px;
   }
 
+  &__click-prompt {
+    pointer-events: none;
+    position: absolute;
+    z-index: 5;
+    top: 24px;
+    left: 0;
+    right: 0;
+    height: 169px;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.9);
+  }
+
+  &__click-prompt-message {
+    color: white;
+    font-size: 22px;
+    text-decoration: underline;
+    padding: 15px 20px;
+    border: 2px solid white;
+  }
+
   &__song-marquee {
     width: max-content;
-    margin: 0 20px 0 0;
+    margin: 0 $grid * 2 0 0;
     padding-bottom: 2px;
   }
 
@@ -25,18 +48,8 @@
   &__skip-song-button {
     font-size: 1.5em;
     line-height: 0;
-    padding: 3px;
-    border-style: outset;
-    background: white;
+    
     cursor: pointer;
-
-    &:hover {
-      background: #ddd;
-    }
-
-    &:active {
-      border-style: inset;
-    }
   }
 
   &__view-playlist-button {
@@ -58,7 +71,6 @@
   &__playlist {
     max-height: 139px;
     overflow-y: scroll;
-    background-color: #ddd;
 
     &--hidden {
       display: none;
@@ -102,4 +114,277 @@
 
   }
 
+  &--light {
+    .jukebox {
+      &__skip-song-button {
+        border-style: outset;
+        background: white;
+        padding: 3px;
+    
+        &:hover {
+          background: #ddd;
+        }
+    
+        &:active {
+          border-style: inset;
+        }
+      }
+    
+      &__playlist {
+        background-color: #ddd;
+      }
+    
+      &__playlist-item {
+        padding: 3px 0px 3px 6px;
+    
+        &--now-playing-icon {
+          float: right;
+          font-size: 1.5em;
+          margin: 3px 5px 0 0;
+          background-color: none;
+        }
+    
+        &--song-name {
+          font-weight: bold;
+    
+          a {
+            color: black;
+    
+            &:hover {
+              color: #667; //Not today, Sa7an
+            }
+    
+            &:visited {
+              color: black;
+    
+              &:hover {
+                color: #665; //Not today, 5atan
+              }
+            }
+          }
+        }
+    
+        &--song-artist {
+          font-size: 90%;
+          font-style: italic;
+        }
+    
+      }
+  
+  
+    }
+  }
+
+  &--dark {
+    .jukebox {
+
+      &__container {
+        background-color: $darkmode-grey;
+        border-radius: 0 0 5px 5px;
+      }
+    
+      &__skip-song-button {
+        background: $darkmode-black;
+        color: $darkmode-white;
+        padding: 5px;
+        border-radius: 5px;
+    
+        &:hover {
+          background: $darkmode-accent;
+          color: $darkmode-white;
+        }
+    
+        &:active {
+          background: $darkmode-accent-pair;
+        }
+      }
+
+      &__song-marquee {
+        color: $darkmode-white;
+      }
+    
+      &__view-playlist-button {
+        align-self: end;
+        line-height: 1.5em;
+        border-radius: 5px;
+        color: $darkmode-white;
+        padding: $grid * 0.5 $grid * 0.5 $grid * 0.7 $grid;
+        text-align: center;
+        justify-self: end;
+        margin: $grid $grid $grid auto;
+        background: $darkmode-black;
+
+        &:hover {
+          background: $darkmode-accent;
+          font-weight: bold;
+        }
+      }
+
+      &__view-playlist-toggle-icon {
+        margin-bottom: 2px;
+      }
+
+      &__previous-song-button {
+        margin: $grid $grid / 2 $grid $grid;
+      }
+
+      &__next-song-button {
+        margin: $grid $grid $grid  $grid / 2;
+      }
+    
+      &__playlist {
+        background-color: $darkmode-black;
+        border-radius: 0 0 5px 5px;
+      }
+    
+      &__playlist-item {
+        padding: $grid / 2 0px $grid / 2 $grid;
+    
+        &--now-playing-icon {
+          margin: 3px $grid 0 0;
+          color: $darkmode-accent
+        }
+    
+        &--song-name {
+          font-weight: bold;
+          margin-bottom: 4px;
+    
+          a {
+            color: $darkmode-white;
+    
+            &:hover {
+              color: $darkmode-accent;
+            }
+    
+            &:visited {
+              color: $darkmode-white;
+    
+              &:hover {
+                color: $darkmode-accent;
+              }
+            }
+          }
+        }
+    
+        &--song-artist {
+          color: $darkmode-white;
+        }
+    
+      }
+
+      &__playlist-item-selected {
+        background-color: $darkmode-grey;
+      }
+  
+  
+    }
+  }
+
+  &--glitch {
+    .jukebox {
+
+      &__container {
+        background-color: $glitch-black;
+        border-radius: 0 0 $glitch-border-radius $glitch-border-radius;
+      }
+    
+      &__skip-song-button {
+        background: $glitch-black;
+        color: $glitch-green;
+        padding: 5px;
+        border-radius: $glitch-border-radius;
+        border: $glitch-border;
+    
+        &:hover {
+          background: $glitch-green;
+          color: $glitch-black;
+        }
+    
+        &:active {
+          border: 1px solid $glitch-black;
+        }
+      }
+
+      &__song-marquee {
+        color: $glitch-green;
+      }
+    
+      &__view-playlist-button {
+        align-self: end;
+        line-height: 1.5em;
+        border-radius: 5px;
+        color: $glitch-green;
+        border: $glitch-border;
+        padding: $grid * 0.5 $grid * 0.5 $grid * 0.7 $grid;
+        text-align: center;
+        justify-self: end;
+        margin: $grid $grid $grid auto;
+        background: $glitch-black;
+
+        &:hover {
+          background: $glitch-green;
+          color: $glitch-black;
+          font-weight: bold;
+        }
+      }
+
+      &__view-playlist-toggle-icon {
+        margin-bottom: 2px;
+      }
+
+      &__previous-song-button {
+        margin: $grid $grid / 2 $grid $grid;
+      }
+
+      &__next-song-button {
+        margin: $grid $grid $grid  $grid / 2;
+      }
+    
+      &__playlist {
+        background-color: $glitch-black;
+        border-radius: 0 0 5px 5px;
+      }
+    
+      &__playlist-item {
+        padding: $grid / 2 0px $grid / 2 $grid;
+    
+        &--now-playing-icon {
+          margin: 3px $grid 0 0;
+          color: $glitch-green;
+        }
+    
+        &--song-name {
+          font-weight: bold;
+          margin-bottom: 4px;
+    
+          a {
+            color: $glitch-green;
+    
+            &:hover {
+              text-decoration-style: wavy;
+            }
+    
+            &:visited {
+              color: $glitch-green;
+    
+              &:hover {
+                text-decoration-style: wavy;
+              }
+            }
+          }
+        }
+    
+        &--song-artist {
+          color: $glitch-green;
+        }
+    
+      }
+
+      &__playlist-item-selected {
+        background-color: $glitch-black;
+      }
+  
+  
+    }
+  }
 }

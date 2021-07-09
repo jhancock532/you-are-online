@@ -1,7 +1,7 @@
 .social {
   position: absolute;
-  bottom: 60px;
-  left: 40px;
+  top: $grid * 2;
+  left: $grid * 2;
 
   &__prompt {
     margin: 0;
@@ -17,44 +17,26 @@
     left: 5px;
     line-height: 0;
     margin: 0;
-    color: grey;
   }
 
   &__text-input {
     resize: none;
-    background: white;
     overflow-y: hidden;
     font-family: $font-primary;
     font-size: 16px;
+    height: calc(3em + 20px);
     width: 300px;
   }
 
   &__submit-button {
-    background: cornflowerblue;
     user-select: none;
-    border-radius: 99em;
     padding: $grid / 2 $grid;
     width: max-content;
     font-size: 18px;
     display: block;
     position: relative;
-    color: white;
     margin: $grid auto;
     cursor: pointer;
-    border-style: outset;
-
-    &:hover {
-      font-weight: bold;
-
-      &:active {
-        border-style: inset;
-      }
-
-      .social__submit-button__tooltip {
-        opacity: 1;
-        transition: opacity 1s ease 1s;
-      }
-    }
 
     &__tooltip {
       opacity: 0;
@@ -105,20 +87,21 @@
     display: flex;
     justify-content: space-around;
     padding: $grid 0 $grid / 2 0;
-    border-bottom: 1px solid grey;
+  }
+
+  &__infromation-tab {
+    padding: $grid;
+    max-width: 300px;
+    text-align: center;
+
+    p {
+      margin: 0;
+    }
   }
 
   &__notification {
     position: relative;
     cursor: pointer;
-
-    &__icon {
-      font-size: 2.5em;
-
-      &:hover {
-        color: cornflowerblue;
-      }
-    }
 
     &__bubble {
       position: absolute;
@@ -150,6 +133,256 @@
       }
     }
   }
+
+  &--light {
+    .social {
+      &__hint-text {
+        color: grey;
+      }
+
+      &__text-input {
+        background: white;
+      }
+
+      &__submit-button {
+        background: $lightmode-accent;
+        border-style: outset;
+        border-radius: 99em;
+        color: white;
+
+        &:hover {
+          font-weight: bold;
+    
+          &:active {
+            border-style: inset;
+          }
+    
+          .social__submit-button__tooltip {
+            opacity: 1;
+            transition: opacity 1s ease 1s;
+          }
+        }
+      }
+
+      &__infromation-tab {
+        border-top: 1px solid grey;
+      }
+
+      &__notifications {
+        border-bottom: 1px solid grey;
+      }
+
+      &__notification {
+        position: relative;
+        cursor: pointer;
+    
+        &__icon {
+          font-size: 2.5em;
+    
+          &--selected {
+            color: #3d5a91;
+            border-bottom: 2px solid #3d5a91;
+            padding: 2px;
+          }
+    
+          &:hover {
+            color: #6495ed;
+          }
+        }
+      }
+    }
+  }
+
+  &--dark {
+    .social {
+      &__prompt {
+        color: $darkmode-white;
+      }
+
+      &__hint-text {
+        top: 40px;
+        left: 6px;
+        color: lighten($darkmode-grey, 50%);
+      }
+
+      &__text-input {
+        border: none;
+        background: $darkmode-black;
+        color: $darkmode-white;
+        padding: 4px 10px;
+
+        &:focus {
+          outline: 2px solid $darkmode-white;
+        }
+      }
+
+      &__submit-button {
+        background: linear-gradient(25deg, $darkmode-accent, $darkmode-accent-pair);
+        background-size: 200%;
+        background-position: 25% 25%;
+        padding: $grid $grid * 2;
+        border: none;
+        color: $darkmode-white;
+        border-radius: $grid;
+
+        &:hover {
+          font-weight: bold;
+          box-shadow: inset 0 1px 3px #790753;
+          background-position: 75% 75%;
+        }
+
+        &:active {
+          transform: translateY(2px);
+        }
+      }
+
+      &__infromation-tab {
+        color: $darkmode-white;
+      }
+
+      &__refresh {
+        color: $darkmode-white;
+        background-color: $darkmode-black;
+        border-radius: 0 0 5px 5px;
+        padding-bottom: 12px;
+
+        &__spinner {
+          color: $darkmode-white;
+        }
+
+        &:hover {
+          font-weight: bold;
+        }
+      }
+
+      &__notification {
+    
+        &__icon {
+          font-size: 2.5em;
+          color: $darkmode-white;
+          background-color: $darkmode-black;
+          padding: 8px;
+          border-radius: 5px;
+          //border: 1px solid $darkmode-white;
+    
+          &--selected {
+            background-color: $darkmode-accent-pair;
+          }
+    
+          &:hover {
+            border: 1px solid $darkmode-accent;
+            background-color: $darkmode-accent;
+          }
+        }
+    
+        &__bubble {
+          background: $darkmode-accent;
+    
+          &__lottery {
+            background: $darkmode-accent;
+          }
+        }
+      }
+    }
+  }
+
+  &--glitch {
+    .social {
+      &__prompt {
+        color: $glitch-green;
+      }
+
+      &__hint-text {
+        top: 40px;
+        left: 6px;
+        color: $glitch-green;
+      }
+
+      &__text-input {
+        border: none;
+        background: darken($glitch-black, 20%);
+        color: $glitch-green;
+        padding: 4px 10px;
+
+        &:focus {
+          outline: 2px solid $glitch-green;
+        }
+      }
+
+      &__submit-button {
+        background: $glitch-black;
+        border: $glitch-border;
+        padding: $grid * 0.8 $grid * 1.2;
+        color: $glitch-green;
+        border-radius: $glitch-border-radius;
+
+        &:hover {
+          font-weight: bold;
+          text-decoration: underline;
+        }
+
+      }
+
+      &__infromation-tab {
+        color: $glitch-green;
+      }
+
+      &__refresh {
+        color: $glitch-green;
+        background-color: $glitch-black;
+        border-radius: 0 0 5px 5px;
+        padding-bottom: 12px;
+
+        &__spinner {
+          color: $glitch-green;
+        }
+
+        &:hover {
+          font-weight: bold;
+        }
+      }
+
+      &__notification {
+    
+        &__icon {
+          font-size: 2.5em;
+          color: $glitch-green;
+          background-color: $glitch-black;
+          border: $glitch-border;
+          padding: 8px;
+          border-radius: $glitch-border-radius;
+    
+          &--selected {
+            background-color: $glitch-green;
+            color: $glitch-black;
+          }
+    
+          &:hover {
+            background-color: $glitch-green;
+            color: $glitch-black;
+          }
+        }
+    
+        &__bubble {
+          top: -8px;
+          right: -12px;
+          background: $glitch-green;
+          color: $glitch-black;
+          border-radius: $glitch-border-radius;
+          border: 2px solid $glitch-black;
+          font-size: 18px;
+          padding: 0px 5px 6px 5px;
+    
+          &__lottery {
+            background: $glitch-green;
+            color: $glitch-black;
+            font-weight: bold;
+          }
+        }
+      }
+    }
+  }
+
 
 }
 

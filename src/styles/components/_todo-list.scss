@@ -1,7 +1,7 @@
 .todo-list {
   position: absolute;
-  top: 60px;
-  left: 40px;
+  top: $grid * 29;
+  right: $grid * 2;
 
   width: max-content;
   min-width: 250px;
@@ -28,7 +28,25 @@
 
   &__encouragement {
     margin: 5px 0;
-    font-style: italic;
     text-align: center;
+    font-weight: bold;
+  }
+
+  &--dark {
+    .todo-list {
+      &__container {
+        color: $darkmode-white;
+        padding: $grid $grid + 4px;
+      }
+    }
+  }
+
+  &--glitch {
+    .todo-list {
+      &__container {
+        color: $glitch-green;
+        padding: $grid $grid + 4px;
+      }
+    }
   }
 }

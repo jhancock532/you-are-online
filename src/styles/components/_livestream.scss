@@ -1,0 +1,218 @@
+.livestream {
+  position: absolute;
+  top: $grid * 5;
+  left: $grid * 5;
+
+  width: max-content;
+  min-width: 250px;
+
+  &__chat-message {
+    display: flex;
+    justify-items: baseline;
+  }
+
+  &__message-author {
+    font-weight: bold;
+    padding: 1px 2px;
+  }
+
+  &__video-image {
+    width: 280px;
+    height: 158px;
+    object-fit: cover;
+  }
+
+  &__chat-feed {
+    height: 86px;
+    overflow-y: scroll;
+  }
+
+  &__video {
+    position: relative;
+    height: 158px;
+  }
+
+  &__view-count {
+    position: absolute;
+    bottom: $grid;
+    right: $grid;
+    background-color: rgba(0,0,0,0.5);
+    padding: 2px 4px;
+    border-radius: 4px;
+    color: white;
+  }
+
+  &__live-status {
+    position: absolute;
+    top: $grid;
+    right: $grid;
+    background-color: rgba(0,0,0,0.5);
+    padding: 2px 4px;
+    border-radius: 4px;
+    color: white;
+
+    &:after {
+      content: "";
+      position: relative;
+      top: -9px;
+      right: -2px;
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      background-color: red;
+      border-radius: 50%;
+      animation: red-pulse 0.8s alternate infinite linear; 
+    }
+  }
+
+  &__heart-count {
+    position: absolute;
+    bottom: $grid;
+    left: $grid;
+    background-color: rgba(0,0,0,0.5);
+    padding: 2px 4px;
+    border-radius: 4px;
+    color: white;
+  }
+
+  &__heart-icon {
+    line-height: 1em;
+    font-size: 0.9em;
+    margin-bottom: -2px;
+    animation: heart-throb 0.5s alternate infinite; 
+  }
+
+  &__chat-options {
+    display: flex;
+    justify-content: space-evenly;
+  }
+
+  &__chat-button {
+    padding: 4px;
+    cursor: pointer;
+    user-select: none;
+
+    &--deactivated {
+      pointer-events: none;
+    }
+  }
+
+  &--light {
+    .livestream {
+
+      //&__chat-feed {
+      //}
+      &__chat-options {
+        border-top: 1px solid white;
+      }
+
+      &__chat-button {
+        background: $lightmode-accent;
+        font-size: 18px;
+        border: 1px solid white;
+        border-bottom: 0;
+        border-top: 0;
+
+        &:hover {
+          background: darken($lightmode-accent, 10%);
+        }
+
+        &--deactivated {
+          filter: grayscale(75%);
+        }
+      }
+
+    }
+  }
+
+  &--dark {
+    .livestream {
+
+      &__chat-options {
+        padding: 4px;
+      }
+
+      &__chat-feed {
+        background: $darkmode-black;
+        color: white;
+      }
+
+      &__chat-button {
+        background: $darkmode-black;
+        font-size: 18px;
+        border-radius: 5px;
+
+        &:hover {
+          background: $darkmode-light-grey;
+        }
+
+        &--deactivated {
+          filter: grayscale(75%);
+        }
+      }
+
+      &__heart-icon{
+        color: $darkmode-accent;
+      }
+
+    }
+  }
+
+  &--glitch {
+    .livestream {
+
+      &__chat-options {
+        background: $glitch-black;
+        padding: 4px;
+      }
+
+      &__chat-feed {
+        background: $glitch-black;
+        color: $glitch-green;
+      }
+
+      &__chat-button {
+        background: $glitch-black;
+        font-size: 18px;
+        border-radius: $glitch-border-radius;
+        border: $glitch-border;
+
+        &:hover {
+          background: $glitch-green;
+        }
+
+        &--deactivated {
+          filter: grayscale(75%);
+        }
+      }
+
+      &__heart-icon{
+        color: $glitch-green;
+      }
+
+      &__live-status {
+    
+        &:after {
+          animation: glitch-pulse 0.8s alternate infinite linear; 
+        }
+      }
+
+    }
+  }
+}
+
+
+@keyframes heart-throb {
+  0%   { transform: scale(1); }
+  100% { transform: scale(1.2); }
+}
+
+@keyframes red-pulse {
+  0%   { background-color: hsl(0, 100%, 50%); }
+  100% { background-color: hsl(0, 100%, 30%); }
+}
+
+@keyframes glitch-pulse {
+  0%   { background-color: hsl(115, 100%, 50%); }
+  100% { background-color: hsl(115, 100%, 30%); }
+}

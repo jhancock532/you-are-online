@@ -1,7 +1,26 @@
+//Layout
+
 $grid: 10px;
 
-$font-primary: Consolas, Monospace, serif;
+//Colour Scheme Variables
 
+$lightmode-accent: #6eadff;
+
+$darkmode-grey: #444;
+$darkmode-light-grey: #666;
+$darkmode-black: #222;
+$darkmode-white: #f8f8f8;
+$darkmode-accent: #ee2456;
+$darkmode-accent-pair: #8c24ee;
+
+$glitch-green: #00f500;
+$glitch-black: #111;
+$glitch-border: 1px solid $glitch-green;
+$glitch-border-radius: 2px;
+
+//Font Variables
+
+$font-primary: Consolas, Monospace, serif;
 $font-weights: ("regular": 400, "medium": 500, "bold": 700);
  
 $mobile-font-sizes: (

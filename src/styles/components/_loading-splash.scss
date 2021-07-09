@@ -1,0 +1,27 @@
+.loading-splash {
+  position: absolute;
+  z-index: 1000;
+  top: 50vh;
+  right: 50vw;
+  transform: translate(50%, -50%) !important;
+  text-align: center;
+
+  &__background {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 999;
+    background-color: black;
+  }
+
+  &__title {
+    color: white;
+    font-family: $font-primary;
+  }
+
+  &__percentage-loaded {
+    color: white;
+    font-family: $font-primary;
+  }
+}

@@ -1,64 +1,148 @@
 .progress {
   position: absolute;
-  bottom: $grid * 2;
-  right: $grid * 4;
+  top: $grid * 10;
+  left: $grid * 2;
 
-  &__level-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    padding: 0 $grid * 2;
-  }
-
-  &__level {
-    user-select: none;
-    p {
-      margin: 0;
-    }
-    h1 {
-      margin: 0;
-      text-align: center;
-    }
-  }
-
-  &__experience {
-    width: 300px;
-    font-size: 18px;
-    font-weight: bold;
-    font-family: monospace;
-    padding: 1px 0;
+  &__title {
     text-align: center;
-    background: rgba(0, 0, 0, 0.5);
-    //border: 1px solid white;
+    font-size: 2em;
+    font-weight: bold;
+  }
 
-    &-value {
-      color: white;
-      //mix-blend-mode: overlay;
-      position: relative;
-      z-index: 1;
-    }
+  &__subtitle {
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.25em;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-bottom: $grid / 2;
+  }
 
-    &-background {
+  &__experience-value {
+    text-align: center;
+    font-weight: bold;
+  }
+
+  &__experience-required {
+    text-align: center;
+    margin-bottom: $grid;
+  }
+
+  &__experience-bar {
+    width: 280px;
+    height: $grid * 2;
+    padding: 1px 0;
+    margin: 0 $grid $grid;
+    position: relative;
+    display: block;
+    
+
+    &--background {
       position: absolute;
-      z-index: -1;
+      z-index: 2;
       top: 0;
       left: 0;
       background: rgb(128, 196, 255);
       height: 100%;
       width: 50%;
-      
-      // Code adapted from the following pen
-      // https://codepen.io/dowding/pen/wJWpoY?editors=0100
-      background: repeating-linear-gradient(to right, cyan 0%, blue 50%, cyan 100%);
-      background-size: 300% auto;
-      background-position: 0 100%;
-      animation: ExperienceBarBackgroundMovement 3s infinite;
-      animation-fill-mode: forwards;
-      animation-timing-function: linear;
+    }
+  }
+
+  &--light {
+    .progress {
+      &__experience-bar {
+        background-color: lighten($lightmode-accent, 10%);
+        border: 1px solid white;
+
+        &--background {
+          background: repeating-linear-gradient(to right, cyan 0%, blue 50%, cyan 100%);
+          animation: ExperienceBarBackgroundMovement 3s infinite;
+          animation-fill-mode: forwards;
+          animation-timing-function: linear;
+          background-size: 300% auto;
+          background-position: 0 100%;
+        }
+      }
+    }
+  }
+
+  &--dark {
+    .progress {
+      &__title {
+        color: $darkmode-white;
+      }
+    
+      &__subtitle {
+        color: $darkmode-white;
+      }
+
+      &__experience-value {
+        color: $darkmode-white;
+      }
+    
+      &__experience-required {
+        color: $darkmode-white;
+        padding-bottom: $grid;
+      }
+
+      &__experience-bar {
+        background-color: $darkmode-black;
+        border-radius: 5px;
+
+        &--background {
+          border-radius: 5px;
+          background: repeating-linear-gradient(to right, $darkmode-accent 0%, $darkmode-accent-pair 50%, $darkmode-accent 100%);
+          animation: ExperienceBarBackgroundMovement 3s infinite;
+          animation-fill-mode: forwards;
+          animation-timing-function: linear;
+          background-size: 300% auto;
+          background-position: 0 100%;
+        }
+      }
+    }
+  }
+
+  &--glitch {
+    .progress {
+      &__title {
+        color: $glitch-green;
+      }
+    
+      &__subtitle {
+        color: $glitch-green;
+      }
+
+      &__experience-value {
+        color: $glitch-green;
+      }
+    
+      &__experience-required {
+        color: $glitch-green;
+        padding-bottom: $grid;
+      }
+
+      &__experience-bar {
+        background-color: $glitch-black;
+        border-radius: $glitch-border-radius;
+
+        &--background {
+          border-radius: $glitch-border-radius;
+          //background: repeating-linear-gradient(to right, $glitch-green 0%, $glitch-green 45%, $glitch-black 45%, $glitch-black 55%, $glitch-green 55%, $glitch-green 100%);
+          background: repeating-linear-gradient(to right, $glitch-green 0%, $glitch-black 50%, $glitch-green 100%);
+          animation: ExperienceBarBackgroundMovement 3s infinite;
+          animation-fill-mode: forwards;
+          animation-timing-function: linear;
+          background-size: 300% auto;
+          background-position: 0 100%;
+        }
+      }
     }
   }
 
 }
+
+      // Code adapted from the following pen
+      // https://codepen.io/dowding/pen/wJWpoY?editors=0100
 
 @keyframes ExperienceBarBackgroundMovement { 
   0%   { 

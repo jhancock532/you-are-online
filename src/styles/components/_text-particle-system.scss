@@ -16,16 +16,67 @@
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
 
-    &--positive {
+    &--positive[light] {
       color: green;
       text-shadow: 2px 2px 2px #fff, 2px 2px 2px #fff, 2px 2px 2px #fff;
     }
 
-    &--negative {
+    &--positive[dark] {
+      color: $darkmode-accent;
+      background: $darkmode-black;
+      border: 1px solid $darkmode-accent;
+      padding: 2px 4px;
+      border-radius: 5px;
+    }
+
+    &--positive[glitch] {
+      color: $glitch-green;
+      background: $glitch-black;
+      padding: 2px 4px;
+      border: $glitch-border;
+    }
+
+    &--negative[light] {
       color: red;
     }
+
+    &--negative[dark] {
+      color: $darkmode-accent-pair;
+      background: $darkmode-black;
+      border: 1px solid $darkmode-accent-pair;
+      padding: 2px 4px;
+      border-radius: 5px;
+    }
+
+    &--negative[glitch] {
+      color: $glitch-black;
+      background: $glitch-green;
+      padding: 2px 4px;
+      border: $glitch-border;
+    }
+
+    &--neutral[light] {
+      color: grey;
+    }
+
+    &--neutral[dark] {
+      color: $darkmode-white;
+      background: $darkmode-black;
+      border: 1px solid $darkmode-white;
+      padding: 2px 4px;
+      border-radius: 5px;
+    }
+
+    &--neutral[glitch] {
+      color: $glitch-green;
+      background: $glitch-black;
+      padding: 2px 4px;
+      border: $glitch-border;
+    }
+    
   }
 }
+
 
 @keyframes evanesce {
   0% {
