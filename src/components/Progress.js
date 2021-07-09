@@ -5,20 +5,22 @@ class Progress extends React.Component {
 
   render() {
 
-    let levelTitle = "Level One";
-    let levelSubtitle = "Light Mode";
-    let experienceRequired = 150;
+    let levelTitle = "Level One", levelSubtitle = "Light Mode";
+    let experienceRequired = this.props.requirements[this.props.level];
+
     if (this.props.level === 2){
       levelTitle = "Level Two";
       levelSubtitle = "Dark Mode";
-      experienceRequired = 300;
     }
     if (this.props.level === 3){
       levelTitle = "Level Three";
       levelSubtitle = "Terminal";
-      experienceRequired = 450;
     }
 
+    if (this.props.level === 4){
+      levelTitle = "THE END";
+      levelSubtitle = "Look at yourself.";
+    }
     
     let classes = "progress ";
 
@@ -35,20 +37,37 @@ class Progress extends React.Component {
       default:
     }
 
+    let showLevelUpButton = false;
+    let experience = this.props.experience;
+    if (this.props.experience > experienceRequired){
+      experience = experienceRequired;
+      showLevelUpButton = true;
+    }
+
+    
+    let windowTitle = "Progress Bar";
+    if (this.props.level === 2) windowTitle = "KPI Progress";
+    if (this.props.level === 3) windowTitle = "Progress.exe";
+
     return (
-      <Window level={this.props.level} windowClass={classes} windowTitle="Progress">
+      <Window level={this.props.level} windowClass={classes} windowTitle={windowTitle}>
         <div className="progress__title" onClick={this.props.clickEffect}>{levelTitle}</div>
         <div className="progress__subtitle">{levelSubtitle}</div>
         <div className="progress__experience-bar">
-          <div className="progress__experience-bar--background" style={{width: (this.props.experience * 100 / experienceRequired) + "%"}}>
+          <div className="progress__experience-bar--background" style={{width: (experience * 100 / experienceRequired) + "%"}}>
           </div>
         </div>
         <div className="progress__experience-value">{this.props.experience} Experience</div>
         <div className="progress__experience-required">{experienceRequired} to Progress</div>
+
+        { showLevelUpButton ? 
+        <div className="progress__level-up-container">
+          <button className="progress__level-up-button" onClick={this.props.levelUp}>LEVEL UP!</button> 
+        </div>
+        : null}
       </Window>
     );
   }
-
 
 }
 

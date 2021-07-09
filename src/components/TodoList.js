@@ -10,53 +10,60 @@ const TODO_MESSAGES = [
   "Take time for rest.",
   "Go outside.",
   "Practice compassion.",
-  "Plan realistic futures.",
+  "Plan for the future.",
   "Be kind to myself.",
+  "Accept reality, openly.",
 ];
 
-/*
-
 const MUST_DO_MESSAGES = [
-  "Find 'the one'",
   "Get a degree",
-  "Find my life purpose",
-  "Find my dream job",
+  "Find life purpose",
+  "Find the dream job",
   "Get a raise",
   "Have sex",
   "Write a book",
   "Build online presence",
   "Learn to draw",
-  "Learn to paint",
+  "Find a partner",
   "Improve my diet",
-  "Learn to sculpt",
   "Cook a fancy meal",
   "Go vegan",
   "Practice my singing",
   "Play an instrument",
   "Write thoughtful poetry",
+  "Learn to paint",
   "Make meaningful friendships",
   "Fight for peace",
   "Save the environment",
   "Be better",
+  "Be better",
+  "Be better",
+  "Be better",
+  "Be better",
+  "Be better",
+  "Be better",
 ]
 
 const COMMANDS = [
-  "Live a meaningful life.",
+  "Live a meaningful life!",
   "Stop wasting time online!",
-  "Break the cycle.",
-  "Look at the screen.",
-  "Ignore the tension.",
-  "Drown the discomfort.",
-  "Sell the dreams of society.",
-  "Live the life electric.",
-  "Accept reality, openly.",
+  "Break the cycle!",
+  "Look at the screen!",
+  "Ignore the tension!",
+  "Drown the discomfort!",
+  "Sell the dreams of society!",
   "FIND LOVE.",
   "FORGIVE MYSELF.",
   "LET GO.",
   "BE FREE.",
-  "STOP."
+  "STOP.",
+  "STOP.",
+  "STOP.",
+  "STOP.",
+  "STOP.",
+  "STOP.",
+  "STOP.",
 ]
-*/
 
 const ENCOURAGEMENT_MESSAGES = [
   "Be productive! 🤑",
@@ -95,6 +102,7 @@ class TodoList extends React.Component {
       encouragementMessage: "Complete the todo list! 🥰",
       clickedItems: 0,
       level: 0,
+      messageNumber: 0,
     };
 
     this.toggleListItem = this.toggleListItem.bind(this);
@@ -102,23 +110,58 @@ class TodoList extends React.Component {
     this.attemptToClose = this.attemptToClose.bind(this);
   }
 
+  componentDidUpdate(prevProps) {
+
+    //https://www.pluralsight.com/guides/prop-changes-in-react-component
+    if (prevProps.level !== this.props.level) {
+      this.createNewListItems();
+    }
+  
+  }
+
   createNewListItems() {
     this.setState({ listItems: [] });
     let newListItems = [];
     const todoListLength = 5 + Math.floor(Math.random() * 3); 
+    const replacedItemIndex = Math.floor(Math.random() * todoListLength);
 
     for (let i = 0; i < todoListLength; i++) {
-      if (Math.random() < 0.1){
-        const randomToDoMessage = TODO_MESSAGES[Math.floor(Math.random() * TODO_MESSAGES.length)]
-        newListItems.push({ message: randomToDoMessage, checked: false});
+
+      if (i === replacedItemIndex) {
+        let customToDoMessage;
+        switch(this.props.level) {
+          case 1:
+            customToDoMessage = TODO_MESSAGES[this.state.messageNumber % TODO_MESSAGES.length];
+            break;
+          case 2:
+            customToDoMessage = MUST_DO_MESSAGES[this.state.messageNumber % MUST_DO_MESSAGES.length];
+            break;
+          case 3:
+            customToDoMessage = COMMANDS[this.state.messageNumber % COMMANDS.length];
+            break;
+          default:
+        } 
+        newListItems.push({ message: customToDoMessage, checked: false});
       } else {
-        newListItems.push({ message: "Tick this!", checked: false});
+        switch(this.props.level) {
+          case 1:
+            newListItems.push({ message: "Tick this!", checked: false});
+            break;
+          case 2:
+            newListItems.push({ message: "Do this!", checked: false});
+            break;
+          case 3:
+            newListItems.push({ message: "Don't stop!", checked: false});
+            break;
+          default:
+        }
       }
     }
 
-    this.setState({
+    this.setState(state => ({
+      messageNumber: state.messageNumber += 1,
       listItems: newListItems
-    });
+    }));
   }
 
   checkIfAllItemsTicked() {
@@ -226,8 +269,12 @@ class TodoList extends React.Component {
       />
     );
 
+    let windowTitle = "Todo List";
+    if (this.props.level === 2) windowTitle = "Must Do List";
+    if (this.props.level === 3) windowTitle = "Command-List.exe";
+
     return (
-      <Window level={this.props.level} windowClass={classes} windowTitle="Todo List" exitButton={true} windowClose={this.attemptToClose}>
+      <Window level={this.props.level} windowClass={classes} windowTitle={windowTitle} exitButton={true} windowClose={this.attemptToClose}>
         <div className="todo-list__container">
           {listItems}
           <p className="todo-list__encouragement">{this.state.encouragementMessage}</p>

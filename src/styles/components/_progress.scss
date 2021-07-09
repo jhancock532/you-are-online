@@ -1,7 +1,7 @@
 .progress {
   position: absolute;
-  top: $grid * 10;
-  left: $grid * 2;
+  top: $grid * 3;
+  left: $grid * 3;
 
   &__title {
     text-align: center;
@@ -48,6 +48,20 @@
     }
   }
 
+  &__level-up-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  &__level-up-button {
+    font-family: $font-primary;
+    font-weight: bold;
+    font-size: 24px;
+    margin: $grid 0 $grid*2;
+    cursor: pointer;
+  }
+
   &--light {
     .progress {
       &__experience-bar {
@@ -62,6 +76,17 @@
           background-size: 300% auto;
           background-position: 0 100%;
         }
+      }
+
+      &__level-up-button {
+        background-color: $lightmode-accent;
+        border-style: outset;
+        border-radius: 99em;
+        padding: $grid / 2 $grid;
+        color: white;
+        box-shadow: 0 0 0 0 rgb(255, 255, 255);
+        transform: scale(1);
+        animation: pulse--lightmode 2s infinite;
       }
     }
   }
@@ -98,6 +123,27 @@
           background-size: 300% auto;
           background-position: 0 100%;
         }
+      }
+
+      &__level-up-button {
+        background: linear-gradient(25deg, $darkmode-accent, $darkmode-accent-pair);
+        background-size: 200%;
+        background-position: 25% 25%;
+        padding: $grid $grid * 2;
+        border: none;
+        color: $darkmode-white;
+        border-radius: $grid;
+        margin-top: 0;
+
+        &:hover {
+          font-weight: bold;
+          box-shadow: inset 0 1px 3px #790753;
+          background-position: 75% 75%;
+        }
+
+        box-shadow: 0 0 0 0 rgb(255, 255, 255);
+        transform: scale(1);
+        animation: pulse--darkmode 2s infinite;
       }
     }
   }
@@ -136,6 +182,25 @@
           background-position: 0 100%;
         }
       }
+
+      &__level-up-button {
+        background: $glitch-black;
+        border: $glitch-border;
+        padding: $grid * 0.8 $grid * 1.2;
+        margin-top: 0;
+        color: $glitch-green;
+        border-radius: $glitch-border-radius;
+
+        &:hover {
+          color: $glitch-black;
+          background: $glitch-green;
+          font-weight: bold;
+          text-decoration: underline;
+        }
+        box-shadow: 0 0 0 0 rgb(255, 255, 255);
+        transform: scale(1);
+        animation: pulse--glitch 2s infinite;
+      }
     }
   }
 
@@ -151,4 +216,55 @@
   100% { 
     background-position: -300% 0; 
   }
+}
+
+@keyframes pulse--lightmode {
+	0% {
+		transform: scale(0.95);
+		box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7);
+	}
+
+	70% {
+		transform: scale(1);
+		box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);
+	}
+
+	100% {
+		transform: scale(0.95);
+		box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+	}
+}
+
+@keyframes pulse--darkmode {
+	0% {
+		transform: scale(0.95);
+		box-shadow: 0 0 0 0 rgba($darkmode-accent, 0.7);
+	}
+
+	70% {
+		transform: scale(1);
+		box-shadow: 0 0 0 10px rgba($darkmode-accent, 0);
+	}
+
+	100% {
+		transform: scale(0.95);
+		box-shadow: 0 0 0 0 rgba($darkmode-accent, 0);
+	}
+}
+
+@keyframes pulse--glitch {
+	0% {
+		transform: scale(0.95);
+		box-shadow: 0 0 0 0 rgba($glitch-green, 0.7);
+	}
+
+	70% {
+		transform: scale(1);
+		box-shadow: 0 0 0 10px rgba($glitch-green, 0);
+	}
+
+	100% {
+		transform: scale(0.95);
+		box-shadow: 0 0 0 0 rgba($glitch-green, 0);
+	}
 }

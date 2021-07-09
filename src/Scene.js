@@ -21,7 +21,15 @@ function CameraMovement(props) {
     const step = 0.1;
     const cameraDetails = {};
 
-    switch (props.position) {
+    let positionNumber = props.position;
+    if (props.level === 1) positionNumber = 0;
+    if (props.level === 2) positionNumber = 1;
+    if (props.level === 3) positionNumber = 2;
+
+    //Let the camera change from default if flow effect playing.
+    if (props.position === 3) positionNumber = 3;
+
+    switch (positionNumber) {
       case 0: //Default, looks a bit weird with the door.
         cameraDetails["position"] = new THREE.Vector3(3, 2, -1);
         cameraDetails["fov"] = 30;
@@ -31,7 +39,11 @@ function CameraMovement(props) {
         cameraDetails["fov"] = 25;
         break;
       case 2: //Looking down, surveillance style
-        cameraDetails["position"] = new THREE.Vector3(3.5, 2.6, 1);
+        cameraDetails["position"] = new THREE.Vector3(3.0, 2.7, 1);
+        cameraDetails["fov"] = 17;
+        break;
+      case 3: //Close up for starwall flow effect. No door visible.
+        cameraDetails["position"] = new THREE.Vector3(2, 2, -0.5);
         cameraDetails["fov"] = 25;
         break;
       default:
@@ -58,10 +70,16 @@ export default function Scene(props) {
     <pointLight position={[-10, -10, -10]} />
   </>;
 
+  const darkmodeLighting = <>
+    <ambientLight intensity={0.2} color="grey"/>
+    <spotLight position={[20, 20, 20]} color="grey" angle={0.15} penumbra={1} />
+    <pointLight distance={2} intensity={1} position={[-1.03, 1.11, -2.51]} color="white"/>
+  </>;
+
   const glitchLighting = <>
-    <ambientLight intensity={0.9} color="green" />
-    <spotLight position={[20, 20, 20]} color="green" angle={0.15} penumbra={1}  />
-    <pointLight position={[10, -10, -10]} color="green" />
+    <ambientLight intensity={0.5} color="green" />
+    <spotLight intensity={0.9} position={[20, 20, 20]} color="green" angle={0.15} penumbra={1}  />
+    <pointLight distance={4} intensity={1} position={[-1.03, 1.41, -2.61]} color="green" />
   </>;
 
   return (
@@ -73,17 +91,17 @@ export default function Scene(props) {
     >
       <Suspense fallback={<LoadingSplash />}>
         <group position={[-1.7, 0.05, -2.55]} scale={[0.6, 0.6, 0.6]} rotation={[0, Math.PI / 2 -0.2, 0]}>
-          <TypistModel />
+          <TypistModel level={props.level}/>
         </group>
-        <RoomModel2 visualEffects={props.visualEffects}/>
+        <RoomModel2 visualEffects={props.visualEffects} level={props.level}/>
       </Suspense>
       
-      {lightmodeLighting}
+      { props.level === 1 ? lightmodeLighting : null}
+      { props.level === 2 ? darkmodeLighting : null}
+      { props.level === 3 ? glitchLighting : null}
 
-      <CameraMovement position={props.visualEffects.cameraPosition} />
-      { true ? null : <>
-      <Stats showPanel={0} className="stats" />
-      </> }
+      <CameraMovement position={props.visualEffects.cameraPosition} level={props.level} />
+      { false ? null : <Stats showPanel={0} className="stats" /> }
     </Canvas>
     </>
   )

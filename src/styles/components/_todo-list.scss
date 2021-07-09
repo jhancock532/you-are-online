@@ -1,10 +1,10 @@
 .todo-list {
   position: absolute;
-  top: $grid * 29;
-  right: $grid * 2;
+  top: $grid * 22;
+  left: $grid * 8;
 
   width: max-content;
-  min-width: 250px;
+  min-width: 260px;
 
   &__container {
     padding: $grid;

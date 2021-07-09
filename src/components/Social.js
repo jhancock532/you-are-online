@@ -397,8 +397,12 @@ class Social extends React.Component {
       default:
     }
 
+    let windowTitle = "Social Media";
+    if (this.props.level === 2) windowTitle = "Content Creator";
+    if (this.props.level === 3) windowTitle = "Net-Spammer.exe";
+
     return (
-      <Window level={this.props.level} windowClass={classes} windowTitle="Content Creator" windowClose={this.attemptToClose}>
+      <Window level={this.props.level} windowClass={classes} windowTitle={windowTitle} windowClose={this.attemptToClose}>
         {/*<p className="social__prompt">Produce your content...</p>*/}
         {textboxDefaultMessage}
         <textarea className="social__text-input" onKeyDown={this.textInput} defaultValue={this.state.post}></textarea>

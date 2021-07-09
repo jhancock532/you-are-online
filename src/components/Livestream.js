@@ -36,11 +36,20 @@ const usernames = [
 ]
 
 const messages = [
+  "❤️",
   "💖",
-  "😍",
-  "💟",
+  "💕",
   "💘",
   "💗"
+]
+
+const suggestions = [
+  "💋",
+  "🥵",
+  "😍",
+  "🍆",
+  "🍑",
+  "😈",
 ]
 
 //Streamer images thanks to 
@@ -82,7 +91,11 @@ class Livestream extends React.Component {
     let message = "";
 
     for (let i = 0; i < length; i++){
-      message += messages[Math.floor(Math.random()*messages.length)];
+      if (this.props.level === 2) {
+        message += messages[Math.floor(Math.random()*messages.length)];
+      } else {
+        message += suggestions[Math.floor(Math.random()*suggestions.length)];
+      }
     }
 
     return message;
@@ -169,8 +182,8 @@ class Livestream extends React.Component {
 
     this.props.callAlert({
       title: "Don't leave me...",
-      message: "I'm tired but I won't stop.",
-      dismissal: "♥",
+      message: "We're all still looking for love.",
+      dismissal: "❤️",
     });
 
   }
@@ -225,8 +238,15 @@ class Livestream extends React.Component {
       default:
     }
 
+    let windowTitle ="Lovestreamer";
+    let chatOptions = messages.map((option) => <div className="livestream__chat-button" onClick={this.postHeartMessage}>{option}</div>)
+    if (this.props.level === 3){
+      windowTitle ="Lovestreamer.exe";
+      chatOptions = suggestions.map((option, index) => <div key={index} className="livestream__chat-button" onClick={this.postHeartMessage}>{option}</div>)
+    }
+
     return (
-      <Window level={this.props.level} windowClass={classes} windowTitle="Lovestreamer" windowClose={this.attemptToClose}>
+      <Window level={this.props.level} windowClass={classes} windowTitle={windowTitle} windowClose={this.attemptToClose}>
         <div className="livestream__video">
           <img className="livestream__video-image" src={streamerImageURL} alt="Online content streamer"/>
           <div className="livestream__view-count">{this.state.viewers + " watchers"}</div>
@@ -238,11 +258,7 @@ class Livestream extends React.Component {
           <div ref={(div) => { this.endOfMessages = div; }}></div>
         </div>
         <div className="livestream__chat-options">
-          <div className="livestream__chat-button" onClick={this.postHeartMessage}>💖</div>
-          <div className="livestream__chat-button" onClick={this.postHeartMessage}>😍</div>
-          <div className="livestream__chat-button" onClick={this.postHeartMessage}>💟</div>
-          <div className="livestream__chat-button" onClick={this.postHeartMessage}>💘</div>
-          <div className="livestream__chat-button" onClick={this.postHeartMessage}>💗</div>
+          {chatOptions}
         </div>
       </Window>
     );

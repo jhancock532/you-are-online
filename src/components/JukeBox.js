@@ -16,28 +16,30 @@ const VIDEO_PLAYLIST = [
   { id: "k1BneeJTDcU", name: "Welcome to the Internet", artist: "Bo Burnham"},
   //Bass drop - the joy of getting lost in the flow of pixels.
   { id: "-lSXMvF0wsk", name: "Do It", artist: "Rootkit, Terlia, Shia LaBeouf"},
-  //An awesome music video, vibes well
+
+  //An awesome music video, vibes well with darkmode corperate
   { id: "hX0T9JCYJMg", name: "Working for Google", artist: "Hey Geronimo" },
-  //Introducing internet addiction
+  //Introducing internet addiction as societal addiction
+  { id: "irfXSw55DUo", name: "Modern Gas", artist: "LOOK MUM NO COMPUTER"},
+  //Disillusionment with acceptance, as the drug is worthwhile.
   { id: "bOjVPS7plJU", name: "Extremely Online", artist: "MC Frontalot" },
+  
+  //Ultimately becoming a part of the electric
+  { id: "Irp0uwdsM3Y", name: "Not Human", artist: "Elegant Slims" },
+  //Entering the numb space, "trying to find the difference"
+  { id: "T3usOhr_gWY", name: "Content", artist: "Joywave" },
+
+  // Total societial disillusionment & meta disillusionment. The absurd.
+  { id: "OVwGnJ8Jd5w", name: "Fake", artist: "That Handsome Devil" },
 
   // Dreaming for societies ideals, pithy. Sadly a bit too subtle / sarcastic?
   //{ id: "8j0SwWiLUGo", name: "Disconnected", artist: "Aceyalone" },
 
   // A nice early stab at societies expectations.
-  { id: "irfXSw55DUo", name: "Modern Gas", artist: "LOOK MUM NO COMPUTER"},
-  // Disillusionment with acceptance, as the drug is worthwhile.
-  { id: "kUDDuTTeK0Q", name: "Back and Forth", artist: "CRX" },
-  // Total societial disillusionment & meta disillusionment.
-  { id: "OVwGnJ8Jd5w", name: "Fake", artist: "That Handsome Devil" },
-  
+  //{ id: "kUDDuTTeK0Q", name: "Back and Forth", artist: "CRX" },
 
   //Being overwhelmed by content 
-  { id: "U8W3Qx7ilyg", name: "DDoS", artist: "MC Frontalot, Quelle Chris"},
-  //Entering the numb space, "trying to find the difference"
-  { id: "T3usOhr_gWY", name: "Content", artist: "Joywave" },
-  //And ultimately becoming a part of the electric
-  { id: "Irp0uwdsM3Y", name: "Not Human", artist: "Elegant Slims" },
+  //{ id: "U8W3Qx7ilyg", name: "DDoS", artist: "MC Frontalot, Quelle Chris"},
 
   //Nothing Worth Loving Isn't Askew - Lemon Demon
   //https://www.youtube.com/watch?v=FEfJiD0uEdQ
@@ -50,9 +52,6 @@ const VIDEO_PLAYLIST = [
   
   //Good music video, but more about internet hate and anger than I'm interested.
   //{ id: "m7QEWz-72bw", name: "Internet Sucks", artist: "MC Frontalot" },
-  
-  
-  
 ];
 
 //boIGbJHf1O8 - Katamari on the Rocks by Dj Jo, GameChops
@@ -129,7 +128,7 @@ class JukeBox extends React.Component {
       {
         bassDrop = true;
         this.props.setVisualEffect("starWall", true);
-        this.props.setVisualEffect("cameraPosition", 1);
+        this.props.setVisualEffect("cameraPosition", 3);
 
         setTimeout(() => {
           this.props.setVisualEffect("cameraPosition", 0);
@@ -147,7 +146,7 @@ class JukeBox extends React.Component {
       {
         bassDrop = true;
         this.props.setVisualEffect("starWall", true);
-        this.props.setVisualEffect("cameraPosition", 1);
+        this.props.setVisualEffect("cameraPosition", 3);
         this.props.setVisualEffect("starSpeed", 1.5);
 
         setTimeout(() => {
@@ -254,9 +253,13 @@ class JukeBox extends React.Component {
         break;
       default:
     }
+
+    let windowTitle = "Music Player";
+    if (this.props.level === 2) windowTitle = "Sound Machine";
+    if (this.props.level === 3) windowTitle = "Noise-Box.exe";
     
     return (
-      <Window level={this.props.level} windowClass={classes} windowTitle="Music Player" notMinimisable windowClose={this.attemptToClose}>
+      <Window level={this.props.level} windowClass={classes} windowTitle={windowTitle} notMinimisable windowClose={this.attemptToClose}>
         <div className="jukebox__container">
           { this.state.startedPlaying ? null :
             <div className="jukebox__click-prompt">

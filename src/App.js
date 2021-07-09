@@ -20,8 +20,7 @@ const LEVEL_PROGRESSION = [
   "GLITCH"
 ]*/
 
-const EXPERIENCE_PROGRESSION_BOUNDARIES = [ 120, 240, 360 ];
-
+const EXPERIENCE_REQUIREMENTS = [ 0, 120, 240, 360 ];
 
 class App extends React.Component {
   constructor(props){
@@ -36,7 +35,7 @@ class App extends React.Component {
 
       showIntroduction: true,
       experience: 0,
-      level: 2, //Level 0 is offline.
+      level: 1, //Level 0 is offline.
       alert: { 
         title: "Alert!",
         message: "Alert message!",
@@ -53,11 +52,12 @@ class App extends React.Component {
     this.toggleEffect = this.toggleEffect.bind(this);
     this.hideIntroduction = this.hideIntroduction.bind(this);
     this.setVisualEffect = this.setVisualEffect.bind(this);
+    this.levelUp = this.levelUp.bind(this);
   }
 
   toggleEffect(){
     this.setState(state => ({
-      level: ((state.level + 1) % 3) + 1
+      experience: state.experience + 20
     }));
   }
 
@@ -79,6 +79,16 @@ class App extends React.Component {
     })
   }
 
+  levelUp(){
+    if (this.state.experience > EXPERIENCE_REQUIREMENTS[this.state.level]) {
+      this.setState(state => ({ 
+        experience: 0, 
+        level: state.level + 1, 
+        voidLevel: state.voidLevel + 1 
+      }));
+    } 
+  }
+
   displayNewAlert(alertObject){
     this.setState({
       alert: {
@@ -94,6 +104,7 @@ class App extends React.Component {
     if (effectSpawnPosition === undefined) return;
 
     this.setState(state => ({ experience: state.experience + amount }));
+    
     this.textParticleSystem.current.spawnExperience(amount, effectSpawnPosition);
   }
 
@@ -111,37 +122,39 @@ class App extends React.Component {
         <Scene level={this.state.level} visualEffects={visualEffects} />
 
         { this.state.showIntroduction ? <Introduction hideIntroduction={this.hideIntroduction}/> : null}
+        
         <JukeBox 
           level={this.state.level}
           callAlert={this.displayNewAlert} 
           addExperience={this.addExperience} 
           setVisualEffect={this.setVisualEffect}
         />
-        { this.state.level === 0 ? null : <>
         <TodoList 
           level={this.state.level}
           callAlert={this.displayNewAlert} 
           addExperience={this.addExperience}
-        /></>}
-        { this.state.level > 0 ? null : <>
+        />
+        <Progress 
+          level={this.state.level} 
+          clickEffect={this.toggleEffect} 
+          levelUp={this.levelUp}
+          requirements={EXPERIENCE_REQUIREMENTS}
+          experience={this.state.experience}
+        />
+
+        { ((this.state.experience >= 60) || (this.state.level > 1)) ? 
         <Social 
           level={this.state.level} 
           callAlert={this.displayNewAlert} 
           addExperience={this.addExperience}
-        /></> }
-        { this.state.level > 5 ? null : <>
-        <Progress 
-          level={this.state.level} 
-          clickEffect={this.toggleEffect} 
-          experience={this.state.experience}
-        />
-        </>}
+        /> : null }
 
+        { (this.state.level > 1) ? 
         <Livestream 
           level={this.state.level} 
           callAlert={this.displayNewAlert} 
           addExperience={this.addExperience}
-        />
+        /> : null }
 
         <Alert alert={this.state.alert} level={this.state.level}  dismissAlert={this.dismissAlert}/>
         <TextParticleSystem level={this.state.level} ref={this.textParticleSystem}/>

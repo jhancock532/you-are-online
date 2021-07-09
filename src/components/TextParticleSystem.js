@@ -21,7 +21,6 @@ class TextParticleSystem extends React.Component {
   }
 
   spawnExperience(amount, effectSpawnPosition) {
-    //console.log(amount, effectSpawnPosition)
 
     const element = document.createElement("div");
     element.classList.add("text-particle-system__particle");
@@ -52,8 +51,6 @@ class TextParticleSystem extends React.Component {
       element.classList.add("text-particle-system__particle--negative");
       message += amount + " EXP";
     }
-
-
 
     element.style.top = effectSpawnPosition.y + "px";
     element.style.left = effectSpawnPosition.x + "px";
