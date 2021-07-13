@@ -9,16 +9,9 @@ import Social from './components/Social';
 import Livestream from './components/Livestream';
 import Alert from './components/Alert';
 import TextParticleSystem from './components/TextParticleSystem';
+import MobileIntroduction from './components/MobileIntroduction';
 
 import './styles/main.scss';
-
-/*
-const LEVEL_PROGRESSION = [
-  "OFFLINE",
-  "DEFAULT",
-  "DARK_MODE",
-  "GLITCH"
-]*/
 
 const EXPERIENCE_REQUIREMENTS = [ 0, 120, 240, 360 ];
 
@@ -81,7 +74,7 @@ class App extends React.Component {
   }
 
   levelUp(){
-    if (this.state.experience > EXPERIENCE_REQUIREMENTS[this.state.level]) {
+    if (this.state.experience >= EXPERIENCE_REQUIREMENTS[this.state.level]) {
       this.setState(state => ({ 
         experience: 0, 
         level: state.level + 1, 
@@ -117,6 +110,12 @@ class App extends React.Component {
       starSpeed: this.state.starSpeed,
       voidLevel: this.state.voidLevel,
       dehumanLevel: this.state.dehumanLevel,
+    }
+
+    if (window.innerWidth < 800){
+      return (<>
+        <MobileIntroduction/>
+      </>)
     }
 
     return (

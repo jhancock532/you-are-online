@@ -19,7 +19,7 @@ class Progress extends React.Component {
 
     if (this.props.level === 4){
       levelTitle = "THE END";
-      levelSubtitle = "Look at yourself.";
+      levelSubtitle = "It's over";
     }
     
     let classes = "progress ";
