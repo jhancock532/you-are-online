@@ -387,4 +387,15 @@
   
     }
   }
+
+  &--end {
+    position: absolute;
+    top: $grid * 2;
+    left: $grid * 2;
+    z-index: 0;
+
+    &__container {
+      width: max-content;
+    }
+  }
 }

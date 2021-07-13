@@ -32,6 +32,9 @@ const VIDEO_PLAYLIST = [
   // Total societial disillusionment & meta disillusionment. The absurd.
   { id: "OVwGnJ8Jd5w", name: "Fake", artist: "That Handsome Devil" },
 
+  // The end.
+  { id: "IWwUfaW-bPg", name: "You Are Not Alone", artist: "Kashuks" }
+
   // Dreaming for societies ideals, pithy. Sadly a bit too subtle / sarcastic?
   //{ id: "8j0SwWiLUGo", name: "Disconnected", artist: "Aceyalone" },
 
@@ -223,6 +226,12 @@ class JukeBox extends React.Component {
           videoPlayingId: VIDEO_PLAYLIST[5].id,
         });
       }
+      if (this.props.level === 4){
+        this.setState({
+          playlistIndex: 8,
+          videoPlayingId: VIDEO_PLAYLIST[8].id,
+        });
+      }
     }
   
   }
@@ -280,7 +289,7 @@ class JukeBox extends React.Component {
   }
 
   render(){
-    const opts = {
+    let opts = {
       height: '169',
       width: '300',
       playerVars: {
@@ -292,6 +301,21 @@ class JukeBox extends React.Component {
         origin: window.location.origin,
       },
     };
+
+    if (this.props.level === 4){
+      opts = {
+        height: '500',
+        width: '800',
+        playerVars: {
+          // https://developers.google.com/youtube/player_parameters
+          autoplay: 1,
+          fs: 0, //disable fullscreen button from showing.
+          modestbranding: 1,
+          controls: 0,
+          origin: window.location.origin,
+        },
+      };
+    }
 
     const playlistItems = VIDEO_PLAYLIST.map((song, index) => 
       <PlaylistItem 
@@ -318,6 +342,9 @@ class JukeBox extends React.Component {
         break;
       case 3:
         classes += "jukebox--glitch ";
+        break;
+      case 4:
+        classes += "jukebox--end ";
         break;
       default:
     }
