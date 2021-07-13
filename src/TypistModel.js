@@ -26,16 +26,35 @@ export default function TypistModel(props) {
   let pantMaterial = materials.Pants;
   let shirtMaterial = materials.Shirt;
   let hairMaterial = materials.Hair;
+  let skinMaterial = materials.Skin;
 
   if (props.level === 3) {
-    eyeMaterial.color = { r: 0.0, g: 1.0, b: 0.0 };
-    eyeMaterial.emissive = { r: 0.0, g: 1.0, b: 0.0 };
-    pantMaterial.wireframe = true;
-    pantMaterial.emissive = { r: 0.0, g: 0.5, b: 0.0 };
-    shirtMaterial.wireframe = true;
-    shirtMaterial.emissive = { r: 0.0, g: 0.5, b: 0.0 };
-    hairMaterial.wireframe = true;
-    hairMaterial.emissive = { r: 0.0, g: 0.5, b: 0.0 };
+
+    if (props.visualEffects.dehumanLevel > 1) {
+      shirtMaterial.wireframe = true;
+      shirtMaterial.emissive = { r: 0.0, g: 0.5, b: 0.0 };
+    }
+
+    if (props.visualEffects.dehumanLevel > 2) {
+      eyeMaterial.color = { r: 0.0, g: 0.0, b: 1.0 };
+      eyeMaterial.emissive = { r: 0.0, g: 0.0, b: 1.0 };
+    }
+
+    if (props.visualEffects.dehumanLevel > 3) {
+      hairMaterial.wireframe = true;
+      hairMaterial.emissive = { r: 0.0, g: 0.5, b: 0.0 };
+    }
+
+    if (props.visualEffects.dehumanLevel > 4) {
+      pantMaterial.wireframe = true;
+      pantMaterial.emissive = { r: 0.0, g: 0.5, b: 0.0 };
+    }
+
+    if (props.visualEffects.dehumanLevel > 6) {
+      skinMaterial.wireframe = true;
+      skinMaterial.emissive = { r: 0.0, g: 0.5, b: 0.0 };
+    }
+
   }
 
   return (
@@ -44,7 +63,7 @@ export default function TypistModel(props) {
         <primitive object={nodes.Bone} />
         <skinnedMesh
           geometry={nodes.Cylinder002.geometry}
-          material={materials.Skin}
+          material={skinMaterial}
           skeleton={nodes.Cylinder002.skeleton}
         />
         <skinnedMesh
@@ -54,7 +73,7 @@ export default function TypistModel(props) {
         /> 
         <skinnedMesh
           geometry={nodes.Cylinder002_2.geometry}
-          material={materials.Hair}
+          material={hairMaterial}
           skeleton={nodes.Cylinder002_2.skeleton}
         />
         <skinnedMesh

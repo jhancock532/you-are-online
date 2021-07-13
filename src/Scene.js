@@ -91,7 +91,7 @@ export default function Scene(props) {
     >
       <Suspense fallback={<LoadingSplash />}>
         <group position={[-1.7, 0.05, -2.55]} scale={[0.6, 0.6, 0.6]} rotation={[0, Math.PI / 2 -0.2, 0]}>
-          <TypistModel level={props.level}/>
+          <TypistModel visualEffects={props.visualEffects} level={props.level}/>
         </group>
         <RoomModel2 visualEffects={props.visualEffects} level={props.level}/>
       </Suspense>
@@ -138,5 +138,12 @@ export default function Scene(props) {
           <pointLight position={[-10, -10, -10]} />
           
           <Stats showPanel={0} className="stats" />
+
+                <EffectComposer>
+        <DepthOfField focusDistance={0} focalLength={0.02} bokehScale={2} height={480} />
+        <Bloom luminanceThreshold={0} luminanceSmoothing={0.9} height={300} />
+        <Noise opacity={0.02} />
+        <Vignette eskil={false} offset={0.1} darkness={1.1} />
+      </EffectComposer>
         </Canvas>
   */

@@ -32,6 +32,7 @@ class App extends React.Component {
       starWall: false,
       starSpeed: 0.5,
       voidLevel: 1,
+      dehumanLevel: 0,
 
       showIntroduction: true,
       experience: 0,
@@ -115,6 +116,7 @@ class App extends React.Component {
       cameraPosition: this.state.cameraPosition,
       starSpeed: this.state.starSpeed,
       voidLevel: this.state.voidLevel,
+      dehumanLevel: this.state.dehumanLevel,
     }
 
     return (
@@ -166,25 +168,3 @@ class App extends React.Component {
 
 
 export default App;
-
-
-/*
-
-      <EffectComposer>
-        <DepthOfField focusDistance={0} focalLength={0.02} bokehScale={2} height={480} />
-        <Bloom luminanceThreshold={0} luminanceSmoothing={0.9} height={300} />
-        <Noise opacity={0.02} />
-        <Vignette eskil={false} offset={0.1} darkness={1.1} />
-      </EffectComposer>
-    </Canvas>
-
-    <FancyText text="Hello, world!"/>
-
-    <OrbitControls 
-      enablePan={true}
-      enableZoom={true}
-      enableRotate={true}
-    />
-  )
-}
-*/

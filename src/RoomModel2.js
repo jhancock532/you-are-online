@@ -18,7 +18,7 @@ export default function RoomModel2(props) {
       wallRef.current.material.uniforms.speed.value = props.visualEffects.starSpeed;
       wallRef.current.material.uniforms.time.value += 1.0;
     }
-    if (props.visualEffects.voidLevel > 2) {
+    if (props.visualEffects.dehumanLevel > 3) {
       screenRef.current.material.uniforms.u_time.value += 0.01;
     }
   });
@@ -49,7 +49,7 @@ export default function RoomModel2(props) {
   if (props.visualEffects.starWall){
     wallMaterial = <shaderMaterial attach="material" args={[StarFieldShader]}/>
   }
-  if (props.visualEffects.voidLevel > 2){
+  if (props.visualEffects.dehumanLevel > 0){
     wallMaterial = <meshStandardMaterial
       attach="material"
       color="black"
@@ -57,6 +57,8 @@ export default function RoomModel2(props) {
       metalness={0.0}
       side={2}
     />
+  }
+  if (props.visualEffects.dehumanLevel > 3){
     screenMaterial = <shaderMaterial attach="material" side={2} args={[TerminalShader]}/>
   }
 
@@ -127,7 +129,7 @@ export default function RoomModel2(props) {
         /> </>}
 
 
-        { (props.visualEffects.voidLevel > 2) ? null : <>
+        { (props.visualEffects.dehumanLevel > 1) ? null : <>
         <group>
         
         { props.visualEffects.starWall ? null : <>
@@ -308,7 +310,7 @@ export default function RoomModel2(props) {
         </group>
 </> }
         
-        { (props.visualEffects.voidLevel > 2) ? null :
+        { (props.visualEffects.dehumanLevel > 5) ? null :
         <mesh
           name="Computer"
           geometry={nodes.Computer.geometry}
@@ -318,7 +320,7 @@ export default function RoomModel2(props) {
           scale={0.14}
         /> }
 
-        { (props.visualEffects.voidLevel > 2) ? null : <>
+        { (props.visualEffects.dehumanLevel > 3) ? null : <>
         <group>
         <mesh
           name="ChairBackBar001"

@@ -54,6 +54,19 @@ const VIDEO_PLAYLIST = [
   //{ id: "m7QEWz-72bw", name: "Internet Sucks", artist: "MC Frontalot" },
 ];
 
+/* 
+This is a complete coincidence, but interesting nonetheless
+the final song for this final piece was found a few days before submission
+Kashuks, You Are Not Alone - https://www.youtube.com/watch?v=IWwUfaW-bPg
+
+As my mind has been so dedicated to this project of late, 
+the lyrics of the song reasonated with me deeply. I decided the song was perfect.
+
+The interconnected nature of the internet has never seemed so apparent to me.
+(especially as I'd just before I'd been watching Heroes on iPlayer, 
+ a TV series based on a series of rather extreme coincidences)
+*/
+
 //boIGbJHf1O8 - Katamari on the Rocks by Dj Jo, GameChops
 
 //If you're thinking more Zen, consider the following...
@@ -124,7 +137,7 @@ class JukeBox extends React.Component {
       }
 
       if (bassDrop === false && this.state.playlistIndex === 1 && 
-          event.target.getCurrentTime() > 44.0 && event.target.getCurrentTime() < 45) 
+          event.target.getCurrentTime() > 44.5 && event.target.getCurrentTime() < 45.5) 
       {
         bassDrop = true;
         this.props.setVisualEffect("starWall", true);
@@ -160,8 +173,58 @@ class JukeBox extends React.Component {
         }, 22000);
       }
 
+      if (this.state.playlistIndex === 5 && //make walls black
+        event.target.getCurrentTime() > 26.0 && event.target.getCurrentTime() < 27) {
+        this.props.setVisualEffect("dehumanLevel", 1);
+      }
+
+      if (this.state.playlistIndex === 5 && //hide posters
+        event.target.getCurrentTime() > 44.0 && event.target.getCurrentTime() < 45) {
+        this.props.setVisualEffect("dehumanLevel", 2);
+      }
+
+      if (this.state.playlistIndex === 5 && //electric blue 
+        event.target.getCurrentTime() > 62.0 && event.target.getCurrentTime() < 63) {
+        this.props.setVisualEffect("dehumanLevel", 3);
+      }
+
+      
+      if (this.state.playlistIndex === 5 && //hide head
+        event.target.getCurrentTime() > 96.0 && event.target.getCurrentTime() < 97) {
+        this.props.setVisualEffect("dehumanLevel", 4);
+      }
+
+      if (this.state.playlistIndex === 5 && //not human
+        event.target.getCurrentTime() > 107.0 && event.target.getCurrentTime() < 108) {
+        this.props.setVisualEffect("dehumanLevel", 5);
+      }
+
+      if (this.state.playlistIndex === 5 && //not human
+        event.target.getCurrentTime() > 164.0 && event.target.getCurrentTime() < 165) {
+        this.props.setVisualEffect("dehumanLevel", 6);
+      }
+
+      if (this.state.playlistIndex === 5 && //not human
+        event.target.getCurrentTime() > 176.0 && event.target.getCurrentTime() < 177) {
+        this.props.setVisualEffect("dehumanLevel", 7);
+      }
+
     }, 250);
 
+  }
+
+  componentDidUpdate(prevProps) {
+
+    //https://www.pluralsight.com/guides/prop-changes-in-react-component
+    if (prevProps.level !== this.props.level) {
+      if (this.props.level === 3){
+        this.setState({
+          playlistIndex: 5,
+          videoPlayingId: VIDEO_PLAYLIST[5].id,
+        });
+      }
+    }
+  
   }
 
   onPause(event){
@@ -179,17 +242,21 @@ class JukeBox extends React.Component {
   }
 
   playNextSong(){
-    this.setState( state => ({
-      playlistIndex: (state.playlistIndex + 1) % VIDEO_PLAYLIST.length,
-      videoPlayingId: VIDEO_PLAYLIST[(state.playlistIndex + 1) % VIDEO_PLAYLIST.length].id
-    }))
+    if (this.state.playlistIndex !== 5 && this.state.playlistIndex !== 1){
+      this.setState( state => ({
+        playlistIndex: (state.playlistIndex + 1) % VIDEO_PLAYLIST.length,
+        videoPlayingId: VIDEO_PLAYLIST[(state.playlistIndex + 1) % VIDEO_PLAYLIST.length].id
+      }))
+    }
   }
 
   playPreviousSong(){
-    this.setState( state => ({
-      playlistIndex: (state.playlistIndex + VIDEO_PLAYLIST.length - 1) % VIDEO_PLAYLIST.length,
-      videoPlayingId: VIDEO_PLAYLIST[(state.playlistIndex + VIDEO_PLAYLIST.length - 1) % VIDEO_PLAYLIST.length].id
-    }))
+    if (this.state.playlistIndex !== 5 && this.state.playlistIndex !== 1){
+      this.setState( state => ({
+        playlistIndex: (state.playlistIndex + VIDEO_PLAYLIST.length - 1) % VIDEO_PLAYLIST.length,
+        videoPlayingId: VIDEO_PLAYLIST[(state.playlistIndex + VIDEO_PLAYLIST.length - 1) % VIDEO_PLAYLIST.length].id
+      }))
+    }
   }
 
   togglePlaylistDisplay() {
@@ -221,6 +288,7 @@ class JukeBox extends React.Component {
         autoplay: 1,
         fs: 0, //disable fullscreen button from showing.
         modestbranding: 1,
+        controls: 0,
         origin: window.location.origin,
       },
     };
@@ -286,14 +354,16 @@ class JukeBox extends React.Component {
           </Marquee>
           <div className="jukebox__controls">
 
+            { (this.state.playlistIndex !== 5 && this.state.playlistIndex !== 1) ? 
             <div className="jukebox__skip-song-button jukebox__previous-song-button"
                  onClick={this.playPreviousSong}>
               <IoMdSkipBackward />
-              </div>
+              </div> : null}
+            { (this.state.playlistIndex !== 5 && this.state.playlistIndex !== 1) ? 
             <div className="jukebox__skip-song-button jukebox__next-song-button"
                  onClick={this.playNextSong}>
               <IoMdSkipForward />
-            </div>
+            </div> : null}
 
             <div className="jukebox__view-playlist-button" onClick={this.togglePlaylistDisplay}>
               {playlistShowMessage}

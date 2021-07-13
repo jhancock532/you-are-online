@@ -25,6 +25,8 @@ Lose yourself / In one and nought #poetry`,
   "The longer you stay the worse it gets.",
 ];
 
+//My mom said "that looks sus" the other day and I straight up bluescreened. My little sister has ruined this household lmao
+
 class Social extends React.Component {
 
   constructor(props) {
