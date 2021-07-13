@@ -101,7 +101,7 @@ export default function Scene(props) {
       { props.level === 3 ? glitchLighting : null}
 
       <CameraMovement position={props.visualEffects.cameraPosition} level={props.level} />
-      { false ? null : <Stats showPanel={0} className="stats" /> }
+      { true ? null : <Stats showPanel={0} className="stats" /> }
     </Canvas>
     </>
   )
