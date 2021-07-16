@@ -212,9 +212,9 @@ class TodoList extends React.Component {
       this.createNewListItems();
     } else {
       if (newListItems[listItemIndex].checked){
-        this.props.addExperience(1, effectSpawnPosition);
+        this.props.addExperience(this.props.level, effectSpawnPosition);
       } else {
-        this.props.addExperience(-1, effectSpawnPosition);
+        this.props.addExperience(-this.props.level, effectSpawnPosition);
       }
     }
   

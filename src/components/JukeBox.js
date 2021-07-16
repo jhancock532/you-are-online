@@ -208,7 +208,7 @@ class JukeBox extends React.Component {
       }
 
       if (this.state.playlistIndex === 5 && //not human
-        event.target.getCurrentTime() > 176.0 && event.target.getCurrentTime() < 177) {
+        event.target.getCurrentTime() > 175.5 && event.target.getCurrentTime() < 176) {
         this.props.setVisualEffect("dehumanLevel", 7);
       }
 
@@ -251,21 +251,17 @@ class JukeBox extends React.Component {
   }
 
   playNextSong(){
-    if (this.state.playlistIndex !== 5 && this.state.playlistIndex !== 1){
-      this.setState( state => ({
-        playlistIndex: (state.playlistIndex + 1) % VIDEO_PLAYLIST.length,
-        videoPlayingId: VIDEO_PLAYLIST[(state.playlistIndex + 1) % VIDEO_PLAYLIST.length].id
-      }))
-    }
+    this.setState( state => ({
+      playlistIndex: (state.playlistIndex + 1) % VIDEO_PLAYLIST.length,
+      videoPlayingId: VIDEO_PLAYLIST[(state.playlistIndex + 1) % VIDEO_PLAYLIST.length].id
+    }))
   }
 
   playPreviousSong(){
-    if (this.state.playlistIndex !== 5 && this.state.playlistIndex !== 1){
-      this.setState( state => ({
-        playlistIndex: (state.playlistIndex + VIDEO_PLAYLIST.length - 1) % VIDEO_PLAYLIST.length,
-        videoPlayingId: VIDEO_PLAYLIST[(state.playlistIndex + VIDEO_PLAYLIST.length - 1) % VIDEO_PLAYLIST.length].id
-      }))
-    }
+    this.setState( state => ({
+      playlistIndex: (state.playlistIndex + VIDEO_PLAYLIST.length - 1) % VIDEO_PLAYLIST.length,
+      videoPlayingId: VIDEO_PLAYLIST[(state.playlistIndex + VIDEO_PLAYLIST.length - 1) % VIDEO_PLAYLIST.length].id
+    }))
   }
 
   togglePlaylistDisplay() {
@@ -297,7 +293,7 @@ class JukeBox extends React.Component {
         autoplay: 1,
         fs: 0, //disable fullscreen button from showing.
         modestbranding: 1,
-        controls: 0,
+        controls: 1,
         origin: window.location.origin,
       },
     };
@@ -311,7 +307,6 @@ class JukeBox extends React.Component {
           autoplay: 1,
           fs: 0, //disable fullscreen button from showing.
           modestbranding: 1,
-          controls: 0,
           origin: window.location.origin,
         },
       };
@@ -381,12 +376,12 @@ class JukeBox extends React.Component {
           </Marquee>
           <div className="jukebox__controls">
 
-            { (this.state.playlistIndex !== 5 && this.state.playlistIndex !== 1) ? 
+            { (this.state.playlistIndex !== 0 && this.state.playlistIndex !== 5) ? 
             <div className="jukebox__skip-song-button jukebox__previous-song-button"
                  onClick={this.playPreviousSong}>
               <IoMdSkipBackward />
               </div> : null}
-            { (this.state.playlistIndex !== 5 && this.state.playlistIndex !== 1) ? 
+            { (this.state.playlistIndex !== 0 && this.state.playlistIndex !== 5) ? 
             <div className="jukebox__skip-song-button jukebox__next-song-button"
                  onClick={this.playNextSong}>
               <IoMdSkipForward />

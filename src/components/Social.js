@@ -5,27 +5,39 @@ import { IoReloadSharp } from 'react-icons/io5';
 
 const POSTS = [
   "Hello world! #myfirstcontent 🥰", //silcon valley floats gently into our introductions
+  "Modern net art must capture the totality of the internet, by any memes possible.",
   `Go online / Abandon thought
 Lose yourself / In one and nought #poetry`,
-  "When consuming content, we lose our sense of self and become a part of the internet machine.", 
+  "When consuming content, we lose our sense of self and become a part of the internet machine.",
   "The most important product tech companies develop is your attachment.",
   "The early web was made by its users, the modern web is passive.",
   "On Twitter, your life is reduced to series of tweets.",
-  "I am a minecraft redstone computer. #ai #academics #conditioned",
   "Demands on your attention remove your ability to attend",
   "I'm so many moves ahead of you I've wandered off to the pub and I've ordered a pint :)",
-  "Hurting others is bad, and if that offends you I don't care 😒",
-  "Stevie Wonderwall is the quality content of my hearts deepest desire.",
+  "Offending others is bad, and if that offends you I don't care 😒",
   "#poetry #poetry #poetry #poetry #poetry #poetry ... sometimes it just hits different.",
+  "Online content overconsumed physically hurts us, if we acknowledge the headache.",
   "Young content producers operate on a whole new level of tiredness; crypt-status.",
+  "Be five things at once! No, wait - be EVERYTHING at once! ... but don't be yourself.",
   "Behold! The democracy of numbers on a screen, as alotted by the general populus.",
   "Coded, conditioned, part of the algorithm. Where does the internet end and the user begin?",
+  `"Maybe I'm just an algorithm with a given name" #content @Joywave`,
   "The user only exists online. Their sole purpose, to unfold the designs we've created.",
-  "The discomfort calls us closer, it echoes of past intimacy.",
+  "Most net art is fundamentally broken, because our humanity is broken as we engage with it.",
+  "Our presence is reduced to intrigue, button pressing, breif enjoyment of colour.",
+  "This is why creative websites often don't fit the 'art' description.",
+  `"This is a distraction, from what is really happening" #fake @ThatHandsomeDevil`,
+  "Our hidden discomforts call us closer, they echo of past intimacy.",
+  "We're all looking for security. For love from others, and ourselves.",
+  "Life has always been more beautiful and engaging than anything I've found online.",
   "The longer you stay the worse it gets.",
 ];
 
-//My mom said "that looks sus" the other day and I straight up bluescreened. My little sister has ruined this household lmao
+// - Found on YouTube - //
+//My mom said "that looks sus" the other day and I straight up bluescreened. 
+//My little sister has ruined this household lmao
+
+//I don't need to write commentary - the comments section already contains more than enough.
 
 class Social extends React.Component {
 
@@ -157,7 +169,7 @@ class Social extends React.Component {
       const xOffset = Math.random() * 160;
       const effectSpawnPosition = {x: boundingRectangle.x + xOffset, y: boundingRectangle.y + 40}
 
-      this.props.addExperience(1, effectSpawnPosition);
+      this.props.addExperience(this.props.level, effectSpawnPosition);
       this.submitPost();
     }
 

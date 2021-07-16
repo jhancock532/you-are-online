@@ -46,7 +46,7 @@ export default function RoomModel2(props) {
   />
 
 
-  if (props.visualEffects.starWall){
+  if (props.visualEffects.starWall && props.level < 3){
     wallMaterial = <shaderMaterial attach="material" args={[StarFieldShader]}/>
   }
   if (props.visualEffects.dehumanLevel > 0){

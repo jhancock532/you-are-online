@@ -169,7 +169,7 @@ class Livestream extends React.Component {
 
     const boundingRectangle = event.currentTarget.getBoundingClientRect();
     const effectSpawnPosition = {x: boundingRectangle.x + 5, y: boundingRectangle.y - 15}
-    this.props.addExperience(messageLength, effectSpawnPosition);
+    this.props.addExperience(messageLength * this.props.level, effectSpawnPosition);
 
     const timeOutTime = 2000 + Math.floor(Math.random() * 5000);
     event.target.classList.add("livestream__chat-button--deactivated");
