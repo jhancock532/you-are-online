@@ -5,14 +5,14 @@ import { IoReloadSharp } from 'react-icons/io5';
 
 const POSTS = [
   "Hello world! #myfirstcontent 🥰", //silcon valley floats gently into our introductions
-  "Modern net art must capture the totality of the internet, by any memes possible.",
-  `Go online / Abandon thought
-Lose yourself / In one and nought #poetry`,
+  "Today's net art should capture the totality of the internet, by any memes possible.",
   "When consuming content, we lose our sense of self and become a part of the internet machine.",
   "The most important product tech companies develop is your attachment.",
   "The early web was made by its users, the modern web is passive.",
   "On Twitter, your life is reduced to series of tweets.",
   "Demands on your attention remove your ability to attend",
+  `Go online / Abandon thought
+  Lose yourself / In one and nought #poetry`,
   "I'm so many moves ahead of you I've wandered off to the pub and I've ordered a pint :)",
   "Offending others is bad, and if that offends you I don't care 😒",
   "#poetry #poetry #poetry #poetry #poetry #poetry ... sometimes it just hits different.",
@@ -32,12 +32,6 @@ Lose yourself / In one and nought #poetry`,
   "Life has always been more beautiful and engaging than anything I've found online.",
   "The longer you stay the worse it gets.",
 ];
-
-// - Found on YouTube - //
-//My mom said "that looks sus" the other day and I straight up bluescreened. 
-//My little sister has ruined this household lmao
-
-//I don't need to write commentary - the comments section already contains more than enough.
 
 class Social extends React.Component {
 
@@ -176,7 +170,6 @@ class Social extends React.Component {
   }
 
   getLotteryNumbers(result){
-    //It was rigged from the start!
 
     let lotteryNumbers = [result.toString()];
 
@@ -417,7 +410,6 @@ class Social extends React.Component {
 
     return (
       <Window level={this.props.level} windowClass={classes} windowTitle={windowTitle} windowClose={this.attemptToClose}>
-        {/*<p className="social__prompt">Produce your content...</p>*/}
         {textboxDefaultMessage}
         <textarea className="social__text-input" onKeyDown={this.textInput} defaultValue={this.state.post}></textarea>
         <div className="social__submit-button" onClick={this.handleSubmitButton}>

@@ -57,7 +57,6 @@ const suggestions = [
 //https://unsplash.com/@uusaez (4)
 //https://www.pexels.com/@rodnae-prod (5)
 
-
 function ChatMessage(props) {
   return (
     <div className="livestream__chat-message">
@@ -182,7 +181,7 @@ class Livestream extends React.Component {
 
     this.props.callAlert({
       title: "Don't leave me...",
-      message: "We're all still looking for love.",
+      message: "Stay with the crowd, we're all watching.",
       dismissal: "❤️",
     });
 

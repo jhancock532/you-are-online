@@ -4,15 +4,8 @@ import LoadingSplash from './components/LoadingSplash';
 
 import * as THREE from 'three'
 import React, { Suspense } from 'react';
-//import { useTransition, a } from 'react-spring'
 import { Canvas, useFrame } from '@react-three/fiber';
-//import { useSpring, animated } from 'react-spring/three';
 import { Stats } from '@react-three/drei';
-
-//import { PerspectiveCamera, OrbitControls, Stats } from '@react-three/drei';
-//import { EffectComposer, DepthOfField, Bloom, Noise, Vignette } from '@react-three/postprocessing'
-
-//https://codesandbox.io/s/react-spring-gykbc?from-embed=&file=/src/App.js
 
 function CameraMovement(props) {
 
@@ -106,44 +99,3 @@ export default function Scene(props) {
     </>
   )
 }
-
-
-
-  /*
-            <PerspectiveCamera position={[1, 2, -1.5]} />
-          <OrbitControls 
-            minPolarAngle={Math.PI * 1 / 4}
-            maxPolarAngle={Math.PI * 2.8 / 4}
-            minAzimuthAngle={-Math.PI * 0.5 / 3}
-            maxAzimuthAngle={Math.PI * 2 / 3}
-            minDistance={0}
-            maxDistance={0.5}
-            target={new Vector3(1, 2, -1.5)}
-            enablePan={true}
-            enableZoom={false}
-            enableRotate={true}
-          />
-
-                  <Canvas camera={{ position: [4, 2, -1], fov: 100 }}>
-          
-          <Suspense fallback={null}>
-            <group position={[-1.7, 0.1, -2.55]} scale={[0.6, 0.6, 0.6]} rotation={[0, Math.PI / 2, 0]}>
-              <TypistModel />
-            </group>
-            <RoomModel2 />
-          </Suspense>
-          
-          <ambientLight intensity={0.5} />
-          <spotLight position={[20, 20, 20]} angle={0.15} penumbra={1} />
-          <pointLight position={[-10, -10, -10]} />
-          
-          <Stats showPanel={0} className="stats" />
-
-                <EffectComposer>
-        <DepthOfField focusDistance={0} focalLength={0.02} bokehScale={2} height={480} />
-        <Bloom luminanceThreshold={0} luminanceSmoothing={0.9} height={300} />
-        <Noise opacity={0.02} />
-        <Vignette eskil={false} offset={0.1} darkness={1.1} />
-      </EffectComposer>
-        </Canvas>
-  */

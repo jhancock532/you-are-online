@@ -13,15 +13,6 @@ export default function TypistModel(props) {
     actions.Typing.play();
   });
 
-  /*
-  const [name, setName] = useState("typing");
-
-  useEffect(() => {
-    actions[name].reset().fadeIn(0.5).play();
-    return () => actions[name].fadeOut(0.5)
-  }, [name])
-  */
-
   let eyeMaterial = materials.Eyes;
   let pantMaterial = materials.Pants;
   let shirtMaterial = materials.Shirt;

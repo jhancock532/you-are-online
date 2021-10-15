@@ -228,18 +228,6 @@ class TodoList extends React.Component {
       dismissal: "Tick this!",
     });
 
-    //You work for me now.
-    //You only exist if you `do`;
-    //Without action or attention,
-    //You are worthless in the eyes of the algorithm.
-    //I define what gives your worth.
-    //I discern if you have value.
-    //Whatever earns me more money, I will press you towards.
-
-    //DO MORE.
-
-    //Still Standing Still - Mixed Blood Majority
-
   }
 
   render() {

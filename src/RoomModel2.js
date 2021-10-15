@@ -62,7 +62,6 @@ export default function RoomModel2(props) {
     screenMaterial = <shaderMaterial attach="material" side={2} args={[TerminalShader]}/>
   }
 
-  //material={materials.Carpet}
   return (
     <group ref={group} {...props} dispose={null}>
       <group name="Scene">

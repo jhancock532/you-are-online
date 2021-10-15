@@ -29,7 +29,7 @@ class App extends React.Component {
 
       showIntroduction: true,
       experience: 0,
-      level: 1, //Level 0 is offline.
+      level: 1,
       alert: { 
         title: "Alert!",
         message: "Alert message!",

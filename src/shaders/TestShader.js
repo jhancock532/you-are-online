@@ -2,8 +2,6 @@ import * as THREE from "three"
 import { extend } from "react-three-fiber"
 import { shaderMaterial } from '@react-three/drei'
 
-
-
 //https://github.com/pmndrs/drei#shadermaterial
 
 const ColorShiftMaterial = shaderMaterial(

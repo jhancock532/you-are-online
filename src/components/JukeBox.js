@@ -6,83 +6,18 @@ import { IoMdSkipBackward, IoMdSkipForward, IoIosMusicalNotes } from 'react-icon
 import { AiFillCaretDown, AiFillCaretUp } from 'react-icons/ai';
 import { RiExternalLinkLine } from 'react-icons/ri';
 
-//Without compassion, suffering can be intolerable.
-//With acceptance, the world becomes electric;
-//This direct experience of feeling -
-//it is something you live for yourself.
-
 const VIDEO_PLAYLIST = [
   //Introduction - deliberately cut off at start.
   { id: "k1BneeJTDcU", name: "Welcome to the Internet", artist: "Bo Burnham"},
-  //Bass drop - the joy of getting lost in the flow of pixels.
   { id: "-lSXMvF0wsk", name: "Do It", artist: "Rootkit, Terlia, Shia LaBeouf"},
-
-  //An awesome music video, vibes well with darkmode corperate
   { id: "hX0T9JCYJMg", name: "Working for Google", artist: "Hey Geronimo" },
-  //Introducing internet addiction as societal addiction
   { id: "irfXSw55DUo", name: "Modern Gas", artist: "LOOK MUM NO COMPUTER"},
-  //Disillusionment with acceptance, as the drug is worthwhile.
   { id: "bOjVPS7plJU", name: "Extremely Online", artist: "MC Frontalot" },
-  
-  //Ultimately becoming a part of the electric
   { id: "Irp0uwdsM3Y", name: "Not Human", artist: "Elegant Slims" },
-  //Entering the numb space, "trying to find the difference"
   { id: "T3usOhr_gWY", name: "Content", artist: "Joywave" },
-
-  // Total societial disillusionment & meta disillusionment. The absurd.
   { id: "OVwGnJ8Jd5w", name: "Fake", artist: "That Handsome Devil" },
-
-  // The end.
   { id: "IWwUfaW-bPg", name: "You Are Not Alone", artist: "Kashuks" }
-
-  // Dreaming for societies ideals, pithy. Sadly a bit too subtle / sarcastic?
-  //{ id: "8j0SwWiLUGo", name: "Disconnected", artist: "Aceyalone" },
-
-  // A nice early stab at societies expectations.
-  //{ id: "kUDDuTTeK0Q", name: "Back and Forth", artist: "CRX" },
-
-  //Being overwhelmed by content 
-  //{ id: "U8W3Qx7ilyg", name: "DDoS", artist: "MC Frontalot, Quelle Chris"},
-
-  //Nothing Worth Loving Isn't Askew - Lemon Demon
-  //https://www.youtube.com/watch?v=FEfJiD0uEdQ
-
-  //Internet addiction anonymous discourse - a bit too heavy handed.
-  //{ id: "MYFzc8sMKSk", name: "SCREENS", artist: "Super Smack, Schaffer the Darklord, LEX The Lexicon Artist, Kadesh Flow"},
-
-  //Choosing to be overwhelmed and wanting the opposite.
-  //{ id: "rZgeF5SrCAg", name: "Zen", artist: "X Ambassadors, K.Flay, grandson" },
-  
-  //Good music video, but more about internet hate and anger than I'm interested.
-  //{ id: "m7QEWz-72bw", name: "Internet Sucks", artist: "MC Frontalot" },
 ];
-
-/* 
-This is a complete coincidence, but interesting nonetheless
-the final song for this final piece was found a few days before submission
-Kashuks, You Are Not Alone - https://www.youtube.com/watch?v=IWwUfaW-bPg
-
-As my mind has been so dedicated to this project of late, 
-the lyrics of the song reasonated with me deeply. I decided the song was perfect.
-
-The interconnected nature of the internet has never seemed so apparent to me.
-(especially as I'd just before I'd been watching Heroes on iPlayer, 
- a TV series based on a series of rather extreme coincidences)
-*/
-
-//boIGbJHf1O8 - Katamari on the Rocks by Dj Jo, GameChops
-
-//If you're thinking more Zen, consider the following...
-//{ id: "cclQ3tlcqps", name: "Makeshift Kingdom", artist: "Sweatshop Union" },
-//Sir Kn8 - Word - https://www.youtube.com/watch?v=mGyDFNqq90Y - I got the 2nd ever YouTube view on this
-
-//AiSK5Lg-ijg - Adam Tell - Foreground
-//aqkvWE42KMY - Lemon Demon - This Hyper World
-//{ id: "wBzqOa9y02I", name: "The World Is Saved", artist: "Danny Wiessner" },
-// IfKsvWJQb4U
-//Credits
-// Thank you
-//{ id: "4EFVuYbx3y0", name: "Comix Zone (Turn The Page)", artist: "Creative Mind Frame, K-Murdock, Soultron"}
 
 function PlaylistItem(props) {
 
@@ -197,17 +132,17 @@ class JukeBox extends React.Component {
         this.props.setVisualEffect("dehumanLevel", 4);
       }
 
-      if (this.state.playlistIndex === 5 && //not human
+      if (this.state.playlistIndex === 5 && //not human (chorus)
         event.target.getCurrentTime() > 107.0 && event.target.getCurrentTime() < 108) {
         this.props.setVisualEffect("dehumanLevel", 5);
       }
 
-      if (this.state.playlistIndex === 5 && //not human
+      if (this.state.playlistIndex === 5 && //not human (chorus)
         event.target.getCurrentTime() > 164.0 && event.target.getCurrentTime() < 165) {
         this.props.setVisualEffect("dehumanLevel", 6);
       }
 
-      if (this.state.playlistIndex === 5 && //not human
+      if (this.state.playlistIndex === 5 && //not human (chorus)
         event.target.getCurrentTime() > 175.5 && event.target.getCurrentTime() < 176) {
         this.props.setVisualEffect("dehumanLevel", 7);
       }
@@ -218,25 +153,29 @@ class JukeBox extends React.Component {
 
   componentDidUpdate(prevProps) {
 
-    //https://www.pluralsight.com/guides/prop-changes-in-react-component
     if (prevProps.level !== this.props.level) {
+
       if (this.props.level === 3){
         this.setState({
           playlistIndex: 5,
           videoPlayingId: VIDEO_PLAYLIST[5].id,
         });
       }
+
       if (this.props.level === 4){
         this.setState({
           playlistIndex: 8,
           videoPlayingId: VIDEO_PLAYLIST[8].id,
         });
       }
+
     }
   
   }
 
   onPause(event){
+    //Makes the music un-pausable
+    //Apologies, this is part of the artwork
     event.target.playVideo();
   }
 
@@ -279,7 +218,7 @@ class JukeBox extends React.Component {
     this.props.callAlert({
       title: `Alert!`,
       message: "Don't stop the music!",
-      dismissal: "OK then...",
+      dismissal: "Pardon?",
     });
 
   }
@@ -303,9 +242,8 @@ class JukeBox extends React.Component {
         height: '500',
         width: '800',
         playerVars: {
-          // https://developers.google.com/youtube/player_parameters
           autoplay: 1,
-          fs: 0, //disable fullscreen button from showing.
+          fs: 0,
           modestbranding: 1,
           origin: window.location.origin,
         },
@@ -374,6 +312,7 @@ class JukeBox extends React.Component {
               </span>
             </p>
           </Marquee>
+          
           <div className="jukebox__controls">
 
             { (this.state.playlistIndex !== 0 && this.state.playlistIndex !== 5) ? 

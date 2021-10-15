@@ -43,7 +43,6 @@ class Progress extends React.Component {
       experience = experienceRequired;
       showLevelUpButton = true;
     }
-
     
     let windowTitle = "Progress Bar";
     if (this.props.level === 2) windowTitle = "KPI Progress";
